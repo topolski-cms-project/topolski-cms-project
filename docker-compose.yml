@@ -17,7 +17,7 @@ services:
     networks:
       - app-network
     environment:
-      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_PROFILES_ACTIVE=dev
       - DATABASE_URL=jdbc:mysql://database:3306/appdb
 
   database:
