@@ -33,9 +33,9 @@ Upewnij się, że masz zainstalowane Docker oraz Docker Compose. Jeśli nie, zai
 
    Możesz połączyć się z bazą danych MySQL za pomocą klienta MySQL, używając poniższych danych logowania:
 
-    - **JDBC URL**: `jdbc:mysql://localhost:3306/appdb`
-    - **Username**: `appuser`
-    - **Password**: `apppassword`
+    - **JDBC URL**: `jdbc:mysql://localhost:3306/devdb`
+    - **Username**: `root`
+    - **Password**: `rootpassword`
 
    Na przykład, aby połączyć się z bazą MySQL za pomocą narzędzia `mysql` w terminalu:
 
