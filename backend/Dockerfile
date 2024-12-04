@@ -11,7 +11,7 @@ RUN yum install -y tar gzip
 COPY . .
 
 # Budujemy aplikację Spring (plik JAR)
-RUN ./mvnw clean package -DskipTests
+RUN ./mvnw clean install -DskipTests
 
 # Tworzymy finalny obraz z Amazon Corretto JRE
 FROM amazoncorretto:17

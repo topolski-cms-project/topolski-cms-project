@@ -26,7 +26,7 @@ Upewnij się, że masz zainstalowane Docker oraz Docker Compose. Jeśli nie, zai
    Po uruchomieniu kontenerów aplikacja backendowa będzie dostępna pod adresem:
 
     ```
-    http://localhost:8080
+    http://localhost:8080/api
     ```
 
 2. **Dostęp do bazy danych MySQL**:
@@ -70,10 +70,10 @@ docker-compose down
     ```
 
 3. **Dostęp do aplikacji**:  
-   Adres: `http://localhost:8080`
+   Adres: `http://localhost:8080/api`
 
 4. **Dostęp do konsoli H2**:  
-   Adres: `http://localhost:8080/h2-console`  
+   Adres: `http://localhost:8080/api/h2-console`  
    JDBC URL: `jdbc:h2:mem:testdb`  
    Username: `sa`  
    Password: (pozostaw puste)
