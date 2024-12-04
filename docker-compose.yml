@@ -1,13 +1,13 @@
 version: '3.8'
 
 services:
-#  frontend:
-#    build:
-#      context: ./frontend
-#    ports:
-#      - "3000:80" # Mapujemy port 80 z Nginx na lokalny port 3000
-#    networks:
-#      - app-network
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
 
   backend:
     build:
