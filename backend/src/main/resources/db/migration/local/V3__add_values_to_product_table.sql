@@ -1,8 +1,8 @@
-INSERT INTO products (name, price) VALUES
-    ('Deska do krojenia', 19.99),
-    ('Stolnica', 29.99),
-    ('Deska do krojenia pizzy', 39.99),
-    ('Drewniana łyżka', 49.99);
+INSERT INTO products (name, price, material, width, height, description) VALUES
+    ('Deska do krojenia', 19.99, 'Drewno', 40, 2, 'Deska do krojenia z naturalnego drewna, idealna do przygotowywania posiłków.'),
+    ('Stolnica', 29.99, 'Silikon', 60, 0.5, 'Stolnica silikonowa, łatwa do czyszczenia, idealna do wypieku ciasta.'),
+    ('Deska do krojenia pizzy', 39.99, 'Drewno', 35, 1, 'Deska do krojenia pizzy z uchwytem, wykonana z wysokiej jakości drewna.'),
+    ('Drewniana łyżka', 49.99, 'Drewno', 30, 1.5, 'Łyżka drewniana do gotowania, ekologiczna i trwała, idealna do użytku w kuchni.');
 
 INSERT INTO image_url (url, product_id) VALUES
 ('product1-img1.jpg', 1),

@@ -1,6 +1,7 @@
 package com.topolski.backend.model.product.entity;
 
 import com.topolski.backend.model.product.dto.ProductDTO;
+import com.topolski.backend.model.product.dto.ProductDetailsDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -50,6 +51,10 @@ public class Product {
 
     public ProductDTO toDTO() {
         return new ProductDTO(id, name, price, extractUrls());
+    }
+
+    public ProductDetailsDTO toDetailedDTO() {
+        return new ProductDetailsDTO(id, name, price, extractUrls(), technicalDetails);
     }
 
     @Override
