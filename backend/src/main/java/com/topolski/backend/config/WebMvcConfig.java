@@ -1,19 +1,17 @@
-import org.springframework.context.annotation.Bean;
+package com.topolski.backend.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class WebMvcConfig {
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("http://fronted:3000")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE");
-            }
-        };
+public class WebMvcConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**") // Dostosuj do swoich endpointów
+                .allowedOrigins("http://localhost:3000") // Adres frontendu
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Dozwolone metody
+                .allowedHeaders("*") // Dozwolone nagłówki
+                .allowCredentials(true); // Jeśli używasz ciasteczek lub tokenów
     }
 }
