@@ -33,7 +33,7 @@ export default function Main() {
     }, [])
 
     return <main id='main'>
-        {selectedProduct !== null ? <ProductDetails product={products.filter(p=>p.id==selectedProduct)[0]}/> :
+        {selectedProduct !== null ? <ProductDetails productID={selectedProduct}/> :
             <>
                 <span id='our-products'>Nasze produkty</span>
                 <div id='products-container'>
