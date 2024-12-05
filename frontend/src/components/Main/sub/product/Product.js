@@ -1,16 +1,16 @@
 import './Product.css';
 
-export default function Product() {
+export default function Product({product,setSelectedProduct}) {
     return <div className='product'>
         <div className='product-top'>
-            <div className='product-image'></div>
+            <div className='product-image' style={{'--bg-url': `url(${product.imageUrl})` }}></div>
         </div>
         <div className='product-bottom'>
-            <div className='product-name'>
-                Some example product
+            <div className='product-name' onClick={()=>setSelectedProduct(product.id)}>
+                {product.name}
             </div>
             <div className='product-price'>
-                123,23 zł
+                {product.price} zł
             </div>
         </div>
     </div>

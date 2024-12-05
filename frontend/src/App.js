@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <div id='bar'>Dostępne od ręki! Wysyłka 24H!</div>
       <Header />
-      <Main />
+      <Main/>
 
     </div>
   );
