@@ -1,12 +1,14 @@
 package com.topolski.backend.model.product.entity;
 
 import com.topolski.backend.model.product.dto.ProductDTO;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +18,10 @@ import lombok.Setter;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Entity
 @Builder
@@ -37,14 +42,14 @@ public class Product {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @Column(name = "image_url", nullable = false)
-    private String imageUrl;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ImageUrl> imageUrls = new ArrayList<>();
 
     @Embedded
     private TechnicalDetails technicalDetails;
 
     public ProductDTO toDTO() {
-        return new ProductDTO(id, name, price, imageUrl);
+        return new ProductDTO(id, name, price, extractUrls());
     }
 
     @Override
@@ -61,5 +66,11 @@ public class Product {
     @Override
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+    }
+
+    private List<String> extractUrls() {
+        return imageUrls.stream()
+                .map(ImageUrl::getUrl)
+                .collect(Collectors.toList());
     }
 }
