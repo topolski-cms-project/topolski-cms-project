@@ -54,10 +54,12 @@ public class ProductControllerTest {
                 .andExpect(jsonPath("$[0].material").doesNotExist())
                 .andExpect(jsonPath("$[0].width").doesNotExist())
                 .andExpect(jsonPath("$[0].height").doesNotExist())
+                .andExpect(jsonPath("$[0].depth").doesNotExist())
                 .andExpect(jsonPath("$[0].description").doesNotExist())
                 .andExpect(jsonPath("$[1].material").doesNotExist())
                 .andExpect(jsonPath("$[1].width").doesNotExist())
                 .andExpect(jsonPath("$[1].height").doesNotExist())
+                .andExpect(jsonPath("$[1].depth").doesNotExist())
                 .andExpect(jsonPath("$[1].description").doesNotExist());
     }
 
@@ -73,6 +75,7 @@ public class ProductControllerTest {
                 .andExpect(jsonPath("$.material").value("Wood"))
                 .andExpect(jsonPath("$.width").value(50.0))
                 .andExpect(jsonPath("$.height").value(40.0))
+                .andExpect(jsonPath("$.depth").value(0.5))
                 .andExpect(jsonPath("$.description").value("High quality wood table."));
     }
 
@@ -94,7 +97,7 @@ public class ProductControllerTest {
                 .name("Wooden Table")
                 .price(new BigDecimal("150.00"))
                 .imageUrls(Collections.singletonList(imageUrl))
-                .technicalDetails(new TechnicalDetails("Wood", 50.0, 40.0, "High quality wood table."))
+                .technicalDetails(new TechnicalDetails("Wood", 50.0, 40.0,  0.5, "High quality wood table."))
                 .build();
         imageUrl.setProduct(product1);
 

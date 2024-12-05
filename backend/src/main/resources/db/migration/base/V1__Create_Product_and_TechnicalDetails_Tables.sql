@@ -6,5 +6,6 @@ CREATE TABLE products (
     material VARCHAR(255),
     width DOUBLE,
     height DOUBLE,
+    depth DOUBLE,
     description VARCHAR(500)
 );

@@ -2,6 +2,7 @@ package com.topolski.backend.model.product.entity;
 
 import com.topolski.backend.model.product.dto.ProductDTO;
 import com.topolski.backend.model.product.dto.ProductDetailsDTO;
+import com.topolski.backend.model.product.dto.RatingScore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -19,9 +20,10 @@ import lombok.Setter;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
@@ -44,13 +46,16 @@ public class Product {
     private BigDecimal price;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ImageUrl> imageUrls = new ArrayList<>();
+    private Set<ImageUrl> imageUrls = new HashSet<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Review> reviews = new HashSet<>();
 
     @Embedded
     private TechnicalDetails technicalDetails;
 
     public ProductDTO toDTO() {
-        return new ProductDTO(id, name, price, extractUrls());
+        return new ProductDTO(id, name, price, extractUrls(), RatingScore.from(reviews));
     }
 
     public ProductDetailsDTO toDetailedDTO() {

@@ -18,7 +18,7 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public List<ProductDTO> getAllProducts() {
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productRepository.findAllWithDetails();
         return products.stream()
                 .map(Product::toDTO)
                 .collect(Collectors.toList());

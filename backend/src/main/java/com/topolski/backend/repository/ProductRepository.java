@@ -13,8 +13,13 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @EntityGraph(attributePaths = {"imageUrls"})
-    List<Product> findAll();
+    @Query("""
+           SELECT DISTINCT p FROM Product p 
+           LEFT JOIN FETCH p.technicalDetails 
+           LEFT JOIN FETCH p.imageUrls 
+           LEFT JOIN FETCH p.reviews
+           """)
+    List<Product> findAllWithDetails();
 
     @Query("SELECT p FROM Product p LEFT JOIN FETCH p.imageUrls WHERE p.id = :id")
     Optional<Product> findByIdWithImages(@Param("id") Long id);
