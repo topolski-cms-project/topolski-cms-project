@@ -25,7 +25,7 @@ public class ProductService {
     }
 
     public ProductDetailsDTO getProductDetails(Long id) {
-        return productRepository.findById(id)
+        return productRepository.findByIdWithImages(id)
                 .map(Product::toDetailedDTO)
                 .orElseThrow(ProductNotFoundException::new);
     }
