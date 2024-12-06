@@ -1,19 +1,21 @@
 .product {
-    height: 90%;
-    width: 14vw;
+    height: 100%;
+    width: 100%;
+    /* aspect-ratio: 1; */
     border: 1px solid white;
 }
 
 .product-top {
-    width: 14vw;
-    height: 14vw;
+    width: 100%;
+    height: 85%;
 }
 
 .product-image {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 1;
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center center;
     background-image: var(--bg-url);
     cursor: pointer;
     position: relative;
@@ -24,13 +26,15 @@
 .product-image-animated{
     position: relative;
     width: 100%;
-    height: 100%;
+    aspect-ratio: 1;
+    /* height: 100%; */
     background-color: white;
-    top: -100%;
+    top: -98%;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
     opacity: 0;
+    /* left: 7.5%; */
     z-index: 100;  
     background-size: 250%;
 }
@@ -47,7 +51,7 @@
 
 .product-bottom {
     width: 100%;
-    height: calc(100%-15vw);
+    height: 15%;
 }
 
 .product-name{

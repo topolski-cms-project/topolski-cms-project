@@ -7,9 +7,8 @@ import ImageCarousel from './sub/ImageCarousel/ImageCarousel';
 
 export default function ImageGallery({ product }) {
     const [imagesArr, setImagesArr] = useState(undefined);
-    const [activeImage, setActiveImage] = useState();
+    const [activeImage, setActiveImage] = useState(0);
     const [visibleSquareRange, setVisibleSquareRange] = useState(0);
-    const [translateRange, setTranslateRange] = useState("0");
 
 
     useEffect(() => {
@@ -20,15 +19,19 @@ export default function ImageGallery({ product }) {
             });
             setImagesArr(arr);
         }
-        if (imagesArr !== undefined) setActiveImage(imagesArr[0]);
+        if (imagesArr !== undefined) setActiveImage(0);
     }, [imagesArr])
+
+    useEffect(() => {
+        console.log(activeImage)
+    }, [activeImage])
 
     function handleVisibleSquareRange(operation) {
 
-        if (operation == "move-up" && visibleSquareRange <0) {
+        if (operation == "move-up" && visibleSquareRange < 0) {
             setVisibleSquareRange(visibleSquareRange + 1)
         }
-        if (operation == "move-down" && visibleSquareRange > 3-imagesArr.length) {
+        if (operation == "move-down" && visibleSquareRange > 3 - imagesArr.length) {
             setVisibleSquareRange(visibleSquareRange - 1)
         }
     }
@@ -40,7 +43,7 @@ export default function ImageGallery({ product }) {
                 {
                     imagesArr.map((i, index) => {
                         return <ImageGallerySquare key={index} index={index} url={i} setActiveImage={setActiveImage} activeImage={activeImage}
-                            visibleSquareRange={visibleSquareRange} imagesArr={imagesArr}/>
+                            visibleSquareRange={visibleSquareRange} imagesArr={imagesArr} />
                     })
                 }
                 <div id='image-gallery-nav'>
@@ -54,7 +57,16 @@ export default function ImageGallery({ product }) {
 
             </div>
             <div id='image-gallery-right'>
-                <ImageCarousel activeImage={activeImage} imagesArr={imagesArr}/>
+                <ImageCarousel activeImage={activeImage} imagesArr={imagesArr} />
+                <div id='image-carousel-nav-bttns-container'>
+                    <div id='image-carousel-bttn-left' onClick={() => { if (activeImage - 1 >= 0) { setActiveImage(activeImage - 1); handleVisibleSquareRange("move-up") }  }}>
+
+                    </div>
+                    <div id='image-carousel-bttn-right' onClick={() => {
+                        console.log("TEST",activeImage,imagesArr.length)
+                        if ((activeImage + 1) < imagesArr.length) { setActiveImage(activeImage + 1); handleVisibleSquareRange("move-down")}  }
+                    }></div>
+                </div>
             </div>
         </> : <></>}
 

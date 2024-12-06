@@ -8,7 +8,7 @@ export default function ImageCarousel({ activeImage, imagesArr }) {
                     backgroundImage: `url(${i})`,
                     translate: `${(index-activeImage)*103}%`,
                 }}>
-
+                
             </div>
         })}
 
