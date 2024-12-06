@@ -7,7 +7,15 @@ export default function Product({ product, setSelectedProduct }) {
         <div className='product-top'>
             <div className='product-image' style={{
                 backgroundImage: `url(http://localhost:8080/api/images/${product.imageUrls[0]})`
-            }}></div>
+            }}
+            ></div>
+            <div className='product-image-animated'
+                style={{
+                    backgroundImage: `url(http://localhost:8080/api/images/${product.imageUrls[1]})`
+                }} onClick={() => setSelectedProduct(product.id)}>
+                
+                
+            </div>
         </div>
         <div className='product-bottom'>
             <div className='product-name' onClick={() => setSelectedProduct(product.id)}>

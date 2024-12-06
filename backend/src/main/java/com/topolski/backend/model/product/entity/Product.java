@@ -75,6 +75,7 @@ public class Product {
 
     private List<String> extractUrls() {
         return imageUrls.stream()
+                .sorted()
                 .map(ImageUrl::getUrl)
                 .collect(Collectors.toList());
     }

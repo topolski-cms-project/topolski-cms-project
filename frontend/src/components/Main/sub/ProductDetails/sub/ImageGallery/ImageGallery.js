@@ -1,11 +1,16 @@
-import { useEffect } from 'react';
+import { act, useEffect } from 'react';
 import { useState } from 'react';
 import './ImageGallery.css';
+import ImageGallerySquare from './sub/ImageGallerySquare/ImageGallerySquare';
+import ImageCarousel from './sub/ImageCarousel/ImageCarousel';
 
 
 export default function ImageGallery({ product }) {
     const [imagesArr, setImagesArr] = useState(undefined);
     const [activeImage, setActiveImage] = useState();
+    const [visibleSquareRange, setVisibleSquareRange] = useState(0);
+    const [translateRange, setTranslateRange] = useState("0");
+
 
     useEffect(() => {
         const arr = [];
@@ -14,53 +19,42 @@ export default function ImageGallery({ product }) {
                 arr.push(`http://localhost:8080/api/images/${image}`)
             });
             setImagesArr(arr);
-
-            console.log("ok")
-
-
         }
         if (imagesArr !== undefined) setActiveImage(imagesArr[0]);
     }, [imagesArr])
 
+    function handleVisibleSquareRange(operation) {
+
+        if (operation == "move-up" && visibleSquareRange <0) {
+            setVisibleSquareRange(visibleSquareRange + 1)
+        }
+        if (operation == "move-down" && visibleSquareRange > 3-imagesArr.length) {
+            setVisibleSquareRange(visibleSquareRange - 1)
+        }
+    }
+
+
     return <div id='image-gallery-container'>
         {imagesArr != undefined ? <>
             <div id='image-gallery-left'>
-                <div id='image-gallery-square-1' className={activeImage == imagesArr[0] ? 'image-gallery-squares image-gallery-square-active' : 'image-gallery-squares'}
-                    style={{
-                        backgroundImage: `url(${imagesArr[0]})`
-
-                    }} onClick={() => setActiveImage(imagesArr[0])}>
-
-                </div>
-                <div id='image-gallery-square-2' className={activeImage == imagesArr[1] ? 'image-gallery-squares image-gallery-square-active' : 'image-gallery-squares'}
-                    style={{
-                        backgroundImage: `url(${imagesArr[1]})`
-                    }} onClick={() => setActiveImage(imagesArr[1])}>
-
-                </div>
-                <div id='image-gallery-square-3' className={activeImage == imagesArr[2] ? 'image-gallery-squares image-gallery-square-active' : 'image-gallery-squares'}
-                    style={{
-                        backgroundImage: `url(${imagesArr[0]})`
-                    }} onClick={() => setActiveImage(imagesArr[0])}>
-
-                </div>
+                {
+                    imagesArr.map((i, index) => {
+                        return <ImageGallerySquare key={index} index={index} url={i} setActiveImage={setActiveImage} activeImage={activeImage}
+                            visibleSquareRange={visibleSquareRange} imagesArr={imagesArr}/>
+                    })
+                }
                 <div id='image-gallery-nav'>
-                    <div id='image-gallery-nav-up' className='image-gallery-nav-bttn'>
+                    <div id='image-gallery-nav-up' className='image-gallery-nav-bttn' onClick={() => handleVisibleSquareRange("move-up")}>
 
                     </div>
-                    <div id='image-gallery-nav-down' className='image-gallery-nav-bttn'>
+                    <div id='image-gallery-nav-down' className='image-gallery-nav-bttn' onClick={() => handleVisibleSquareRange("move-down")}>
 
                     </div>
                 </div>
 
             </div>
             <div id='image-gallery-right'>
-                <div id='image-gallery-main'
-                    style={{
-                        backgroundImage: `url(${activeImage})`
-                    }}>
-
-                </div>
+                <ImageCarousel activeImage={activeImage} imagesArr={imagesArr}/>
             </div>
         </> : <></>}
 

@@ -1,0 +1,21 @@
+.image-gallery-squares {
+    width: 9vw;
+    height: 9vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    position: absolute;
+    transition: all .3s ease-in-out;
+    
+
+}
+
+.image-gallery-squares:hover {
+    opacity: 0.5;
+    transition: all .3s ease-in-out;
+}
+
+.image-gallery-square-active {
+    opacity: 0.5;
+}

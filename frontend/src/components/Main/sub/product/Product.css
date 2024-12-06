@@ -2,13 +2,11 @@
     height: 90%;
     width: 14vw;
     border: 1px solid white;
-    /* background-color: black; */
 }
 
 .product-top {
     width: 14vw;
     height: 14vw;
-    /* background-color: green; */
 }
 
 .product-image {
@@ -17,13 +15,39 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-image: var(--bg-url);
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
     
 }
+
+.product-image-animated{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    top: -100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0;
+    z-index: 100;  
+    background-size: 250%;
+}
+
+.product-image-animated:hover{
+    opacity: 1;
+    cursor: pointer;    
+    
+    zoom: 200%;
+    background-size: 280%;
+    transition: background-size 1s, opacity 0.4s;
+}
+
 
 .product-bottom {
     width: 100%;
     height: calc(100%-15vw);
-    /* background-color: rebeccapurple; */
 }
 
 .product-name{

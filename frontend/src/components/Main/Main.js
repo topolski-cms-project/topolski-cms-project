@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import ProductDetails from './sub/ProductDetails/ProductDetails';
 
-export default function Main() {
+export default function Main({selectedProduct,setSelectedProduct}) {
     const [products, setProducts] = useState();
-    const [selectedProduct, setSelectedProduct] = useState(null);
+    
 
     async function fetchData() {
         try {

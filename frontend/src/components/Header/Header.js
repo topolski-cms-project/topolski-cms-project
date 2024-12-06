@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import './Header.css';
 
-export default function Header() {
+export default function Header({setSelectedProduct}) {
     const [currentTab, setCurrentTab] = useState("browse");
 
     return <>
-        <header id='header'>
+        <header id='header' >
             <div id='header-middle'>
-                <div id='logo'>
+                <div id='logo' onClick={()=>setSelectedProduct(null)}>
                     wooden store.
                 </div>
                 <div id='browse-products-bttn' className='header-bttn' onClick={() => setCurrentTab("browse")} >

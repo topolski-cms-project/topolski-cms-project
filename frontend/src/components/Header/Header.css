@@ -6,12 +6,13 @@ header {
     display: flex;
     justify-content: center;
     text-transform: uppercase;
+    position: relative;
+    z-index: 999;
 
 }
 
 
 .header-bttn>span {
-    /* border: 1px solid black; */
     height: 4em;
     display: flex;
     justify-content: center;
@@ -28,7 +29,6 @@ header {
 }
 
 .header-bttn>span:hover {
-    /* border-bottom: 2px solid black; */
     box-sizing: border-box;
 
 }
@@ -70,7 +70,6 @@ header {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    /* background-color: black; */
 }
 
 #logo {
@@ -78,8 +77,8 @@ header {
     font-size: 2em;
     text-transform: uppercase;
     font-weight: 500;
-    /* border: 1px solid black; */
     text-align: left;
+    cursor: pointer;
 }
 
 
@@ -89,7 +88,6 @@ header {
 #contact-bttn,
 #login-bttn {
     
-    /* border: 1px solid black; */
     height: 100%;
     display: flex;
     justify-content: center;
@@ -110,7 +108,6 @@ header {
 #basket {
     width: 10%;
     height: 100%;
-    /* background-color: black; */
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -125,7 +122,6 @@ header {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    /* border: 1px solid black; */
 }
 
 #basket-price-total {
@@ -134,8 +130,6 @@ header {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    /* box-sizing: border-box; */
-    /* border: 1px solid black; */
     line-height: 1;
 
 }
