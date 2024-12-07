@@ -63,7 +63,6 @@ export default function ImageGallery({ product }) {
 
                     </div>
                     <div id='image-carousel-bttn-right' onClick={() => {
-                        console.log("TEST",activeImage,imagesArr.length)
                         if ((activeImage + 1) < imagesArr.length) { setActiveImage(activeImage + 1); handleVisibleSquareRange("move-down")}  }
                     }></div>
                 </div>

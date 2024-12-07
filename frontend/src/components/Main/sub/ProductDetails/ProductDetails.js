@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './ProductDetails.css';
 import ImageGallery from './sub/ImageGallery/ImageGallery';
+import Description from './sub/Description/Description';
+import Reviews from './sub/Reviews/Reviews';
 
 
 
@@ -9,7 +11,8 @@ import ImageGallery from './sub/ImageGallery/ImageGallery';
 export default function ProductDetails({ productID }) {
     const [quantity,setQuantity]=useState(1);
     const [product, setProduct] = useState(undefined);
-    const [imagesArr, setImagesArr] = useState([]);
+    // const [imagesArr, setImagesArr] = useState([]);
+    const [navChoice,setNavChoice]=useState("description");
     async function fetchProduct() {
         const data = await fetch(`http://localhost:8080/api/products/${productID}`, {
             method: "GET",
@@ -48,7 +51,7 @@ export default function ProductDetails({ productID }) {
                         <span id='product-price'>
                             {product.price} zł
                         </span>
-                        <span id='product-description'>
+                        <span id='product-description-short'>
                             <b>{product.name} - </b>{product.description}
                         </span>
                         <span id='product-size'>
@@ -71,7 +74,23 @@ export default function ProductDetails({ productID }) {
                         </div>
                     </div>
                 </div>
-                <div id='product-details-bottom'></div>
+                <div id='product-details-bottom'>
+                    <div id='product-details-bottom-nav'>
+                        <div id='product-description' className={navChoice=="description" ? 'details-nav-bttn details-nav-bttn-active' : 'details-nav-bttn' } onClick={()=>{setNavChoice("description")}}>
+                            OPIS
+                        </div>
+                        <div id='product-reviews' className={navChoice=="reviews" ? 'details-nav-bttn details-nav-bttn-active' : 'details-nav-bttn' } onClick={()=>{setNavChoice("reviews")}}>
+                            OPINIE (0)
+                        </div>
+                        <div id='product-delivery' className={navChoice=="delivery" ? 'details-nav-bttn details-nav-bttn-active' : 'details-nav-bttn' } onClick={()=>{setNavChoice("delivery")}}>
+                            PŁATNOŚĆ & DOSTAWA
+                        </div>
+                    </div>
+                    {
+                        navChoice =="description" ? <Description /> : navChoice=="reviews" ? <Reviews /> : <></>
+                        
+                    }
+                </div>
             </> : <></>
         }
     </div >
