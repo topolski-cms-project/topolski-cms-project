@@ -8,7 +8,7 @@ import Reviews from './sub/Reviews/Reviews';
 
 
 
-export default function ProductDetails({ productID }) {
+export default function ProductDetails({ productID,basket,setBasket }) {
     const [quantity,setQuantity]=useState(1);
     const [product, setProduct] = useState(undefined);
     // const [imagesArr, setImagesArr] = useState([]);
@@ -68,7 +68,7 @@ export default function ProductDetails({ productID }) {
                                     +
                                 </div>
                             </div>
-                            <div id='add-to-cart-bttn'>
+                            <div id='add-to-cart-bttn' onClick={()=>{setBasket([...basket,{product:product,quantity:quantity}])}}>
                                 Dodaj do koszyka
                             </div>
                         </div>

@@ -113,6 +113,7 @@ header {
     align-items: center;
     flex-direction: row;
     font-size: .8em;
+    cursor: pointer;
 }
 
 #basket-image {
