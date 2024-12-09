@@ -8,13 +8,13 @@ import Reviews from './sub/Reviews/Reviews';
 
 
 
-export default function ProductDetails({ productID,basket,setBasket }) {
+export default function ProductDetails({ productID,basket,setBasket,setTabChoice }) {
     const [quantity,setQuantity]=useState(1);
     const [product, setProduct] = useState(undefined);
     // const [imagesArr, setImagesArr] = useState([]);
     const [navChoice,setNavChoice]=useState("description");
     async function fetchProduct() {
-        const data = await fetch(`http://localhost:8080/api/products/${productID}`, {
+        const data = await fetch(`${process.env.REACT_APP_API_PRODUCTS}/${productID}`, {
             method: "GET",
             headers: {
                 "content-type": "application/json"
@@ -33,6 +33,22 @@ export default function ProductDetails({ productID,basket,setBasket }) {
         }else if(operation=="addition"){
             setQuantity(quantity+1)
         }
+    }
+
+    function addItemToBasket() {
+        if (basket.some(item => item.product.id === product.id)) {
+            const updatedBasket = basket.map(item => {
+                if (item.product.id === product.id) {
+                    return { ...item, quantity: item.quantity + quantity };
+                }
+                return item; // Return unchanged items
+            });
+            setBasket(updatedBasket);
+        } else {
+            // Add the new item to the basket
+            setBasket([...basket, { product: product, quantity: quantity }]);
+        }
+        setTabChoice("basket");
     }
 
     useEffect(() => {
@@ -68,7 +84,7 @@ export default function ProductDetails({ productID,basket,setBasket }) {
                                     +
                                 </div>
                             </div>
-                            <div id='add-to-cart-bttn' onClick={()=>{setBasket([...basket,{product:product,quantity:quantity}])}}>
+                            <div id='add-to-cart-bttn' onClick={()=>{addItemToBasket()}}>
                                 Dodaj do koszyka
                             </div>
                         </div>

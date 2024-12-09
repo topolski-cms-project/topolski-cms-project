@@ -6,12 +6,12 @@ export default function Product({ product, setSelectedProduct }) {
     return <div className='product'>
         <div className='product-top'>
             <div className='product-image' style={{
-                backgroundImage: `url(http://localhost:8080/api/images/${product.imageUrls[0]})`
+                backgroundImage: `url(${process.env.REACT_APP_API_IMAGES}${product.imageUrls[0]})`
             }}
             ></div>
             <div className='product-image-animated'
                 style={{
-                    backgroundImage: `url(http://localhost:8080/api/images/${product.imageUrls[1]})`
+                    backgroundImage: `url(${process.env.REACT_APP_API_IMAGES}${product.imageUrls[1]})`
                 }} onClick={() => setSelectedProduct(product.id)}>
                 
                 

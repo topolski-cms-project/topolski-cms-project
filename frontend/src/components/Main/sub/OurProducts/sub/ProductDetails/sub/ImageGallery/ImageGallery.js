@@ -15,7 +15,7 @@ export default function ImageGallery({ product }) {
         const arr = [];
         if (product !== undefined && imagesArr == undefined) {
             product.imageUrls.forEach(image => {
-                arr.push(`http://localhost:8080/api/images/${image}`)
+                arr.push(`${process.env.REACT_APP_API_IMAGES}${image}`)
             });
             setImagesArr(arr);
         }

@@ -4,13 +4,13 @@ import Product from './sub/product/Product'
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-export default function OurProducts({selectedProduct,setSelectedProduct,basket, setBasket}) {
+export default function OurProducts({selectedProduct,setSelectedProduct,basket, setBasket,setTabChoice}) {
     const [products, setProducts] = useState();
 
 
     async function fetchData() {
         try {
-            const response = await fetch("http://localhost:8080/api/products", {
+            const response = await fetch(process.env.REACT_APP_API_PRODUCTS, {
                 method: "GET",
                 headers: {
                     "content-type": "application/json"
@@ -31,8 +31,8 @@ export default function OurProducts({selectedProduct,setSelectedProduct,basket, 
     useEffect(() => {
         fetchData();
     }, [])
-    return <div id='our-products-container'>
-        {selectedProduct !== null ? <ProductDetails productID={selectedProduct} basket={basket} setBasket={setBasket}/> :
+    return <>
+        {selectedProduct !== null ? <ProductDetails productID={selectedProduct} basket={basket} setBasket={setBasket} setTabChoice={setTabChoice}/> :
             <>
                 <span id='our-products'>Nasze produkty</span>
                 <div id='products-container'>
@@ -44,5 +44,5 @@ export default function OurProducts({selectedProduct,setSelectedProduct,basket, 
                 </div>
             </>
         }
-    </div>
+    </>
 }

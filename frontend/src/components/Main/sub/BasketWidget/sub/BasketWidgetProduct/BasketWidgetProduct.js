@@ -1,9 +1,8 @@
 import './BasketWidgetProduct.css';
 
 export default function BasketWidgetProduct({product,quantity,deleteProduct}) {
-    console.log(product)
     return <div className='basket-widget-product-container'>
-        <div className='basket-widget-product-image' style={{backgroundImage:`url(http://localhost:8080/api/images/${product.imageUrls[0]})`}}>
+        <div className='basket-widget-product-image' style={{backgroundImage:`url(${process.env.REACT_APP_API_IMAGES}${product.imageUrls[0]})`}}>
 
         </div>
         <div className='basket-widget-product-details'>
