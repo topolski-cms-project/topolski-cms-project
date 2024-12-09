@@ -3,7 +3,6 @@ package com.topolski.backend.controller;
 import com.topolski.backend.model.product.dto.ReviewRequest;
 import com.topolski.backend.model.product.entity.Product;
 import com.topolski.backend.repository.ProductRepository;
-import com.topolski.backend.service.ReviewService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,8 +17,6 @@ import static org.hamcrest.Matchers.containsString;
 public class ReviewControllerTest extends BaseController {
     @Autowired
     private ProductRepository productRepository;
-    @Autowired
-    private ReviewService reviewService;
 
     @Test
     public void testAddReview() {

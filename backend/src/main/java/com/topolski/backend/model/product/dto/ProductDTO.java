@@ -8,6 +8,7 @@ public record ProductDTO(
         Long id,
         String name,
         BigDecimal price,
+        Integer stockQuantity,
         List<String> imageUrls,
         RatingScore ratingScore) {
 }
