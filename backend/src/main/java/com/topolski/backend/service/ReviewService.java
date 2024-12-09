@@ -6,20 +6,17 @@ import com.topolski.backend.model.product.entity.Product;
 import com.topolski.backend.model.product.entity.Review;
 import com.topolski.backend.repository.ProductRepository;
 import com.topolski.backend.repository.ReviewRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
 @Service
+@RequiredArgsConstructor
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
     private final ProductRepository productRepository;
-
-    public ReviewService(ReviewRepository reviewRepository, ProductRepository productRepository) {
-        this.reviewRepository = reviewRepository;
-        this.productRepository = productRepository;
-    }
 
     public void addReview(ReviewRequest reviewRequest) {
 

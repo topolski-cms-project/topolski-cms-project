@@ -10,6 +10,7 @@ public record ProductDetailsDTO(
         Long id,
         String name,
         BigDecimal price,
+        Integer stockQuantity,
         List<String> imageUrls,
         @JsonUnwrapped TechnicalDetails technicalDetails,
         List<ReviewDTO> reviews) {

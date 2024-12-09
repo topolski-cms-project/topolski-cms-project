@@ -40,11 +40,13 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column(nullable = false)
     private BigDecimal price;
+
+    private Integer stockQuantity;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ImageUrl> imageUrls = new HashSet<>();
@@ -56,11 +58,11 @@ public class Product {
     private TechnicalDetails technicalDetails;
 
     public ProductDTO toDTO() {
-        return new ProductDTO(id, name, price, extractUrls(), RatingScore.from(reviews));
+        return new ProductDTO(id, name, price, stockQuantity, extractUrls(), RatingScore.from(reviews));
     }
 
     public ProductDetailsDTO toDetailedDTO() {
-        return new ProductDetailsDTO(id, name, price, extractUrls(), technicalDetails, getReviewDTO());
+        return new ProductDetailsDTO(id, name, price, stockQuantity, extractUrls(), technicalDetails, getReviewDTO());
     }
 
 
