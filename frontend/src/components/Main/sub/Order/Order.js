@@ -44,7 +44,7 @@ export default function Order({ basket, setBasket }) {
             isAdditionalInfoValid: true
 
         })
-        console.log(isFormValid)
+
         if (Object.values(isFormValid).every(value => value === true)) {
             // const response = await fetch(process.env.REACT_APP_ORDER, {
             //     method: "POST",

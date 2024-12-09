@@ -14,7 +14,7 @@ export default function OrderItem({ product, quantity, basket, setBasket }) {
     function deleteProduct(product) {
         setBasket(basket.filter(p => p.product.id != product.id));
     }
-    console.log("KURWA", product)
+
     const [newQuantity, setNewQuantity] = useState(quantity);
     function manageQuantity(operation) {
         if (operation == "substraction" && newQuantity > 1) {

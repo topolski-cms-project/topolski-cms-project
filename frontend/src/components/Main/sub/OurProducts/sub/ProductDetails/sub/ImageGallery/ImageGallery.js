@@ -22,9 +22,7 @@ export default function ImageGallery({ product }) {
         if (imagesArr !== undefined) setActiveImage(0);
     }, [imagesArr])
 
-    useEffect(() => {
-        console.log(activeImage)
-    }, [activeImage])
+
 
     function handleVisibleSquareRange(operation) {
 
