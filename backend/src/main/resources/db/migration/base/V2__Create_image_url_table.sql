@@ -1,4 +1,3 @@
--- Tworzenie tabeli ImageUrl
 CREATE TABLE image_url (
     id BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     url VARCHAR(255) NOT NULL,
