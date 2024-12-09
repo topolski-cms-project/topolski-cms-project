@@ -18,14 +18,14 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public List<ProductDTO> getAllProducts() {
-        List<Product> products = productRepository.findAllWithDetails();
+        List<Product> products = productRepository.findAllWithImagesAndReviews();
         return products.stream()
                 .map(Product::toDTO)
                 .collect(Collectors.toList());
     }
 
     public ProductDetailsDTO getProductDetails(Long id) {
-        return productRepository.findByIdWithImages(id)
+        return productRepository.findByIdWithDetails(id)
                 .map(Product::toDetailedDTO)
                 .orElseThrow(ProductNotFoundException::new);
     }

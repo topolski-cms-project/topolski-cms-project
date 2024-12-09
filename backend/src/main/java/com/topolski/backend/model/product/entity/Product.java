@@ -3,6 +3,7 @@ package com.topolski.backend.model.product.entity;
 import com.topolski.backend.model.product.dto.ProductDTO;
 import com.topolski.backend.model.product.dto.ProductDetailsDTO;
 import com.topolski.backend.model.product.dto.RatingScore;
+import com.topolski.backend.model.product.dto.ReviewDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -59,8 +60,9 @@ public class Product {
     }
 
     public ProductDetailsDTO toDetailedDTO() {
-        return new ProductDetailsDTO(id, name, price, extractUrls(), technicalDetails);
+        return new ProductDetailsDTO(id, name, price, extractUrls(), technicalDetails, getReviewDTO());
     }
+
 
     @Override
     public final boolean equals(Object o) {
@@ -79,8 +81,15 @@ public class Product {
     }
 
     private List<String> extractUrls() {
-        return imageUrls.stream()
+        return this.imageUrls.stream()
                 .map(ImageUrl::getUrl)
+                .collect(Collectors.toList());
+    }
+
+    private List<ReviewDTO> getReviewDTO() {
+        return this.reviews
+                .stream()
+                .map(ReviewDTO::from)
                 .collect(Collectors.toList());
     }
 }

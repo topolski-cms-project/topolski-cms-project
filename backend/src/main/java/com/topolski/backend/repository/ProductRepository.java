@@ -14,13 +14,18 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("""
             SELECT DISTINCT p FROM Product p
-            LEFT JOIN FETCH p.technicalDetails
             LEFT JOIN FETCH p.imageUrls
             LEFT JOIN FETCH p.reviews
             """)
-    List<Product> findAllWithDetails();
+    List<Product> findAllWithImagesAndReviews();
 
-    @Query("SELECT p FROM Product p LEFT JOIN FETCH p.imageUrls WHERE p.id = :id")
-    Optional<Product> findByIdWithImages(@Param("id") Long id);
+    @Query("""
+            SELECT p FROM Product p
+             LEFT JOIN FETCH p.imageUrls
+             LEFT JOIN FETCH p.technicalDetails
+             LEFT JOIN FETCH p.reviews
+              WHERE p.id = :id
+              """)
+    Optional<Product> findByIdWithDetails(@Param("id") Long id);
 
 }
