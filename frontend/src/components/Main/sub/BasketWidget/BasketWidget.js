@@ -33,14 +33,14 @@ export default function BasketWidget({ setDisplayBasket, displayBasket, basket, 
                 </div>
             </div>
             <div id='basket-widget-products-container'>
-                {basket.map(p => {
-                    return <BasketWidgetProduct product={p.product} quantity={p.quantity} deleteProduct={deleteProduct} />
+                {basket.map((p,index) => {
+                    return <BasketWidgetProduct key={index} product={p.product} quantity={p.quantity} deleteProduct={deleteProduct} />
                 })}
             </div>
             <div id='basket-widget-sumup'>
                 <div id='basket-widget-sumup-price'>
                     <span style={{ fontWeight: '500' }}>Kwota:</span>
-                    <span style={{ fontWeight: '600', color: 'rgba(255, 0, 0, 0.7);' }}>{calculateTotalBasketPrice()} zł</span>
+                    <span style={{ fontWeight: '600', color: 'rgba(255, 0, 0, 0.7)' }}>{calculateTotalBasketPrice()} zł</span>
                 </div>
                 <div id='see-basket-bttn' className='basket-widget-bttn' onClick={() => setTabChoice("basket")} >
                     Zobacz koszyk

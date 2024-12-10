@@ -22,6 +22,7 @@ export default function ProductDetails({ productID,basket,setBasket,setTabChoice
         })
         const response = await data.json();
         setProduct(response);
+        console.log(response);
 
         
 
@@ -103,7 +104,7 @@ export default function ProductDetails({ productID,basket,setBasket,setTabChoice
                         </div>
                     </div>
                     {
-                        navChoice =="description" ? <Description /> : navChoice=="reviews" ? <Reviews /> : <></>
+                        navChoice =="description" ? <Description /> : navChoice=="reviews" ? <Reviews productID={product.id}/> : <></>
                         
                     }
                 </div>

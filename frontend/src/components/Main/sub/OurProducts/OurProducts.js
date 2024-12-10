@@ -8,6 +8,8 @@ export default function OurProducts({selectedProduct,setSelectedProduct,basket, 
     const [products, setProducts] = useState();
 
 
+
+
     async function fetchData() {
         try {
             const response = await fetch(process.env.REACT_APP_API_PRODUCTS, {
@@ -22,6 +24,7 @@ export default function OurProducts({selectedProduct,setSelectedProduct,basket, 
 
             const json = await response.json();
             setProducts(json);
+            console.log(json);
         } catch (error) {
             console.error(error.message);
         }

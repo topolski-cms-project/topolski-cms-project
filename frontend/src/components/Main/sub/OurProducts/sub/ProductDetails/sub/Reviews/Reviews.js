@@ -3,34 +3,43 @@ import './Reviews.css';
 import Rating from '@mui/material/Rating';
 import { checkIfNotInputEmpty, validateEmail } from '../../../../../../../InputValidator';
 
-export default function Reviews() {
+export default function Reviews({ productID }) {
+    console.log(productID)
     const [isOpinionValid, setIsOpinionValid] = useState({
         isNameValid: true,
         isEmailValid: true,
         isReviewValid: true,
     })
     const [opinion, setOpinion] = useState({
-        userName: "",
+        productID: productID,
+        reviewerName: "",
         email: "",
-        comment: "",
+        reviewText: "",
         rating: 5,
         image: null
     })
     async function sendReview() {
-        if (checkIfNotInputEmpty(opinion.userName) && validateEmail(opinion.email) && checkIfNotInputEmpty(opinion.comment)) {
-            const response = fetch(document.env.REACT_APP_API_REVIEWS, {
-                method: 'POST',
-                headers: {
-                    "content-type": "application/json"
-                },
-                body:JSON.stringify(opinion)
-            })
-            
+        if (checkIfNotInputEmpty(opinion.reviewerName) && validateEmail(opinion.email) && checkIfNotInputEmpty(opinion.reviewText)) {
+            try {
+                const response = fetch(process.env.REACT_APP_API_REVIEWS, {
+                    method: 'POST',
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(opinion)
+                })
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+            } catch (error) {
+                console.error(error.message);
+            }
+
         } else {
             setIsOpinionValid({
-                isNameValid: checkIfNotInputEmpty(opinion.userName),
+                isNameValid: checkIfNotInputEmpty(opinion.reviewerName),
                 isEmailValid: validateEmail(opinion.email),
-                isReviewValid: checkIfNotInputEmpty(opinion.comment)
+                isReviewValid: checkIfNotInputEmpty(opinion.reviewText)
             })
         }
 
@@ -50,12 +59,12 @@ export default function Reviews() {
                 defaultValue={5}
                 precision={1}
                 onChange={(event, newValue) => {
-                    setOpinion({ ...opinion, rating: newValue })
+                    setOpinion({ ...opinion, rating: parseInt(newValue) })
                 }}
             />
-            <textarea id='review-input' onChange={(e) => setOpinion({ ...opinion, comment: e.target.value })} className={isOpinionValid.isReviewValid ? "" : "incorrect-data"}/>
+            <textarea id='review-input' onChange={(e) => setOpinion({ ...opinion, reviewText: e.target.value })} className={isOpinionValid.isReviewValid ? "" : "incorrect-data"} />
             <span>Nazwa<span style={{ color: 'red' }}>*</span></span>
-            <input type='text' id='name-input' onChange={(e) => setOpinion({ ...opinion, userName: e.target.value })} className={isOpinionValid.isNameValid ? "" : "incorrect-data"} /> 
+            <input type='text' id='name-input' onChange={(e) => setOpinion({ ...opinion, reviewerName: e.target.value })} className={isOpinionValid.isNameValid ? "" : "incorrect-data"} />
             <span>E-mail<span style={{ color: 'red' }}>*</span></span>
             <input type='text' id='email-input' onChange={(e) => setOpinion({ ...opinion, email: e.target.value })} className={isOpinionValid.isEmailValid ? "" : "incorrect-data"} />
             <span>Wybierz zdjęcie (maksymalny rozmiar: 2000kB, maksymalnie 1 plik)</span>
