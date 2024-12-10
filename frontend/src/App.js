@@ -13,7 +13,7 @@ function App() {
   
  
 
-  console.log(basket);
+
 
   useEffect(()=>{ 
     if(tabChoice=="basket"){
@@ -25,7 +25,7 @@ function App() {
     const currentDate = new Date();
     currentDate.setUTCDate(currentDate.getUTCDate() + 7); // Add 7 days to the current date
     document.cookie=`basket=${JSON.stringify(basket)};expires=${currentDate.toUTCString()}`;
-    console.log(basket);
+
   },[basket])
 
   function getCookieFromBasket(){
