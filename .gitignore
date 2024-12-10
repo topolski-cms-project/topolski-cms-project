@@ -5,6 +5,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+./backend/src/main/java/com/topolski/backend/config
+./backend/src/main/java/com/topolski/backend/config/*
 
 ### STS ###
 .apt_generated

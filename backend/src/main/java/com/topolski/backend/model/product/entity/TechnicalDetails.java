@@ -19,5 +19,7 @@ public class TechnicalDetails {
 
     private Double height;
 
+    private Double depth;
+
     private String description;
 }
