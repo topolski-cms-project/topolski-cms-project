@@ -1,5 +1,7 @@
 package com.topolski.backend.model.entity;
 
+import com.topolski.backend.model.dto.review.ReviewWithProductNameDTO;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +38,12 @@ public class Review {
     private String username;
     private String comment;
     private Integer rating;
+    @Column(name = "image_url")
+    private String imageUrl;
 
     private LocalDateTime createdAt;
+
+    public ReviewWithProductNameDTO toDTO() {
+        return new ReviewWithProductNameDTO(id, username, comment, rating, product.getName(), imageUrl);
+    }
 }
