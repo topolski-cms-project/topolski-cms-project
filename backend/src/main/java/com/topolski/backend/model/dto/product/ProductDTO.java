@@ -1,11 +1,10 @@
-package com.topolski.backend.model.product.dto.product;
+package com.topolski.backend.model.dto.product;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import com.topolski.backend.model.product.dto.review.ReviewDTO;
-import com.topolski.backend.model.product.entity.TechnicalDetails;
+import com.topolski.backend.model.dto.review.ReviewDTO;
+import com.topolski.backend.model.entity.TechnicalDetails;
 import lombok.Builder;
 
 import java.math.BigDecimal;

@@ -1,8 +1,8 @@
-package com.topolski.backend.model.product.entity;
+package com.topolski.backend.model.entity;
 
-import com.topolski.backend.model.product.dto.product.ProductDTO;
-import com.topolski.backend.model.product.dto.product.RatingScore;
-import com.topolski.backend.model.product.dto.review.ReviewDTO;
+import com.topolski.backend.model.dto.product.ProductDTO;
+import com.topolski.backend.model.dto.product.RatingScore;
+import com.topolski.backend.model.dto.review.ReviewDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;

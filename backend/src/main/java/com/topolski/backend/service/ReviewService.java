@@ -2,10 +2,10 @@ package com.topolski.backend.service;
 
 import com.topolski.backend.exception.ProductNotFoundException;
 import com.topolski.backend.exception.ReviewNotFoundException;
-import com.topolski.backend.model.product.dto.review.ReviewRequest;
-import com.topolski.backend.model.product.dto.review.ReviewWithProductNameDTO;
-import com.topolski.backend.model.product.entity.Product;
-import com.topolski.backend.model.product.entity.Review;
+import com.topolski.backend.model.dto.review.ReviewRequest;
+import com.topolski.backend.model.dto.review.ReviewWithProductNameDTO;
+import com.topolski.backend.model.entity.Product;
+import com.topolski.backend.model.entity.Review;
 import com.topolski.backend.repository.ProductRepository;
 import com.topolski.backend.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;

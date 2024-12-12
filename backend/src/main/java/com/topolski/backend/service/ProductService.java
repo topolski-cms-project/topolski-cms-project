@@ -2,9 +2,9 @@ package com.topolski.backend.service;
 
 import com.topolski.backend.exception.ProductNotFoundException;
 import com.topolski.backend.mapper.GenericToDTOMapper;
-import com.topolski.backend.model.product.dto.product.ProductDTO;
-import com.topolski.backend.model.product.dto.product.ProductRequest;
-import com.topolski.backend.model.product.entity.Product;
+import com.topolski.backend.model.dto.product.ProductDTO;
+import com.topolski.backend.model.dto.product.ProductRequest;
+import com.topolski.backend.model.entity.Product;
 import com.topolski.backend.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

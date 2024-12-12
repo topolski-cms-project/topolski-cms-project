@@ -1,12 +1,14 @@
 package com.topolski.backend.controller;
 
-import com.topolski.backend.model.product.dto.product.ProductDTO;
-import com.topolski.backend.model.product.dto.product.ProductRequest;
-import com.topolski.backend.model.product.dto.review.ReviewWithProductNameDTO;
+import com.topolski.backend.model.dto.product.ProductDTO;
+import com.topolski.backend.model.dto.product.ProductRequest;
+import com.topolski.backend.model.dto.review.ReviewWithProductNameDTO;
+import com.topolski.backend.model.http.ServerResponse;
 import com.topolski.backend.service.ProductService;
 import com.topolski.backend.service.ReviewService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,13 +34,13 @@ public class AdminController {
         return productService.getAllProductsWithTechnicalDetails();
     }
 
-    @PostMapping
-    public ResponseEntity<String> addProduct(@Valid @RequestBody ProductRequest productRequest) {
+    @PostMapping("/products")
+    public ResponseEntity<ServerResponse> addProduct(@Valid @RequestBody ProductRequest productRequest) {
         productService.addProduct(productRequest);
-        return ResponseEntity.ok("Product added successfully!");
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ServerResponse("Product added successfully"));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/products/{id}")
     public ResponseEntity<ProductDTO> updateProduct(
             @PathVariable Long id,
             @RequestBody @Valid ProductRequest productRequest) {
@@ -52,8 +54,8 @@ public class AdminController {
     }
 
     @DeleteMapping("/reviews/{id}")
-    public ResponseEntity<String> deleteReview(@PathVariable Long id) {
+    public ResponseEntity<ServerResponse> deleteReview(@PathVariable Long id) {
         reviewService.deleteReviewById(id);
-        return ResponseEntity.ok("Review deleted successfully");
+        return ResponseEntity.ok(new ServerResponse("Review deleted successfully"));
     }
 }

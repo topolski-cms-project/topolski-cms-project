@@ -1,4 +1,4 @@
-package com.topolski.backend.model.product.dto.review;
+package com.topolski.backend.model.dto.review;
 
 public record ReviewWithProductNameDTO(
         Long id,

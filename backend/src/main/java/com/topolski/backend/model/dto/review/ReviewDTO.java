@@ -1,6 +1,6 @@
-package com.topolski.backend.model.product.dto.review;
+package com.topolski.backend.model.dto.review;
 
-import com.topolski.backend.model.product.entity.Review;
+import com.topolski.backend.model.entity.Review;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

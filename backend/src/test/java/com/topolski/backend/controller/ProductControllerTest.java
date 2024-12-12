@@ -1,9 +1,9 @@
 package com.topolski.backend.controller;
 
-import com.topolski.backend.model.product.entity.ImageUrl;
-import com.topolski.backend.model.product.entity.Product;
-import com.topolski.backend.model.product.entity.Review;
-import com.topolski.backend.model.product.entity.TechnicalDetails;
+import com.topolski.backend.model.entity.ImageUrl;
+import com.topolski.backend.model.entity.Product;
+import com.topolski.backend.model.entity.Review;
+import com.topolski.backend.model.entity.TechnicalDetails;
 import com.topolski.backend.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

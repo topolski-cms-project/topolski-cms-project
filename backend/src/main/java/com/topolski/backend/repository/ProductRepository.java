@@ -1,6 +1,6 @@
 package com.topolski.backend.repository;
 
-import com.topolski.backend.model.product.entity.Product;
+import com.topolski.backend.model.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

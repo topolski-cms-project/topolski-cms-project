@@ -1,6 +1,6 @@
 package com.topolski.backend.controller;
 
-import com.topolski.backend.model.product.dto.product.ProductDTO;
+import com.topolski.backend.model.dto.product.ProductDTO;
 import com.topolski.backend.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
