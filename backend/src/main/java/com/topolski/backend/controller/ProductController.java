@@ -1,7 +1,6 @@
 package com.topolski.backend.controller;
 
-import com.topolski.backend.model.product.dto.ProductDTO;
-import com.topolski.backend.model.product.dto.ProductDetailsDTO;
+import com.topolski.backend.model.dto.product.ProductDTO;
 import com.topolski.backend.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +19,11 @@ public class ProductController {
 
     @GetMapping
     public List<ProductDTO> getAllProducts() {
-        return productService.getAllProducts();
+        return productService.getAllProductsWithImagesAndReviews();
     }
 
     @GetMapping("/{id}")
-    public ProductDetailsDTO getProductDetails(@PathVariable Long id) {
+    public ProductDTO getProductDetails(@PathVariable Long id) {
         return productService.getProductDetails(id);
     }
 }

@@ -1,9 +1,8 @@
-package com.topolski.backend.model.product.entity;
+package com.topolski.backend.model.entity;
 
-import com.topolski.backend.model.product.dto.ProductDTO;
-import com.topolski.backend.model.product.dto.ProductDetailsDTO;
-import com.topolski.backend.model.product.dto.RatingScore;
-import com.topolski.backend.model.product.dto.ReviewDTO;
+import com.topolski.backend.model.dto.product.ProductDTO;
+import com.topolski.backend.model.dto.product.RatingScore;
+import com.topolski.backend.model.dto.review.ReviewDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -24,6 +23,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -58,13 +58,43 @@ public class Product {
     private TechnicalDetails technicalDetails;
 
     public ProductDTO toDTO() {
-        return new ProductDTO(id, name, price, stockQuantity, extractUrls(), RatingScore.from(reviews));
+        return ProductDTO.builder()
+                .id(id)
+                .name(name)
+                .price(price)
+                .stockQuantity(stockQuantity)
+                .imageUrls(extractUrls())
+                .ratingScore(RatingScore.from(reviews))
+                .build();
     }
 
-    public ProductDetailsDTO toDetailedDTO() {
-        return new ProductDetailsDTO(id, name, price, stockQuantity, extractUrls(), technicalDetails, getReviewDTO());
+    public ProductDTO toDetailedDTO() {
+        return ProductDTO.builder()
+                .id(id)
+                .name(name)
+                .price(price)
+                .stockQuantity(stockQuantity)
+                .imageUrls(extractUrls())
+                .reviews(getReviewDTO())
+                .technicalDetails(technicalDetails)
+                .ratingScore(RatingScore.from(reviews))
+                .build();
     }
 
+    public ProductDTO toTechnicalDetailsDTO() {
+        return ProductDTO.builder()
+                .id(id)
+                .name(name)
+                .price(price)
+                .stockQuantity(stockQuantity)
+                .technicalDetails(technicalDetails)
+                .imageUrls(extractUrls())
+                .build();
+    }
+
+    public void updateStockQuantity(Integer quantity) {
+        this.stockQuantity += Optional.ofNullable(quantity).orElse(0);
+    }
 
     @Override
     public final boolean equals(Object o) {

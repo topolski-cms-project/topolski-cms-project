@@ -1,7 +1,7 @@
 package com.topolski.backend.controller;
 
-import com.topolski.backend.model.product.dto.ReviewRequest;
-import com.topolski.backend.model.product.entity.Product;
+import com.topolski.backend.model.dto.review.ReviewRequest;
+import com.topolski.backend.model.entity.Product;
 import com.topolski.backend.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

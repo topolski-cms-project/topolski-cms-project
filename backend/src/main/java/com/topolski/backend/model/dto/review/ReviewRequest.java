@@ -1,4 +1,4 @@
-package com.topolski.backend.model.product.dto;
+package com.topolski.backend.model.dto.review;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
