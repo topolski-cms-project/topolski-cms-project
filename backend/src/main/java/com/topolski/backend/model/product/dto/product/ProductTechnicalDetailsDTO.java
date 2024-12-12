@@ -1,17 +1,14 @@
-package com.topolski.backend.model.product.dto;
+package com.topolski.backend.model.product.dto.product;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.topolski.backend.model.product.entity.TechnicalDetails;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-public record ProductDetailsDTO(
+public record ProductTechnicalDetailsDTO(
         Long id,
         String name,
         BigDecimal price,
         Integer stockQuantity,
-        List<String> imageUrls,
-        @JsonUnwrapped TechnicalDetails technicalDetails,
-        List<ReviewDTO> reviews) {
+        @JsonUnwrapped TechnicalDetails technicalDetails) {
 }

@@ -1,6 +1,6 @@
 package com.topolski.backend.controller;
 
-import com.topolski.backend.model.product.dto.ReviewRequest;
+import com.topolski.backend.model.product.dto.review.ReviewRequest;
 import com.topolski.backend.model.product.entity.Product;
 import com.topolski.backend.repository.ProductRepository;
 import org.junit.jupiter.api.Test;

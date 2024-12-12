@@ -1,4 +1,4 @@
-package com.topolski.backend.model.product.dto;
+package com.topolski.backend.model.product.dto.product;
 
 
 import java.math.BigDecimal;

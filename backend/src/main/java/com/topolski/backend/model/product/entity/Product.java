@@ -1,9 +1,10 @@
 package com.topolski.backend.model.product.entity;
 
-import com.topolski.backend.model.product.dto.ProductDTO;
-import com.topolski.backend.model.product.dto.ProductDetailsDTO;
-import com.topolski.backend.model.product.dto.RatingScore;
-import com.topolski.backend.model.product.dto.ReviewDTO;
+import com.topolski.backend.model.product.dto.product.ProductDTO;
+import com.topolski.backend.model.product.dto.product.ProductDetailsDTO;
+import com.topolski.backend.model.product.dto.product.ProductTechnicalDetailsDTO;
+import com.topolski.backend.model.product.dto.product.RatingScore;
+import com.topolski.backend.model.product.dto.review.ReviewDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -65,6 +66,13 @@ public class Product {
         return new ProductDetailsDTO(id, name, price, stockQuantity, extractUrls(), technicalDetails, getReviewDTO());
     }
 
+    public ProductTechnicalDetailsDTO toTechnicalDetailsDTO() {
+        return new ProductTechnicalDetailsDTO(id, name, price, stockQuantity, technicalDetails);
+    }
+
+    public void updateStockQuantity(Integer quantity) {
+        this.stockQuantity += quantity;
+    }
 
     @Override
     public final boolean equals(Object o) {

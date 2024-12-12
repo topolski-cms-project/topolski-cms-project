@@ -1,15 +1,19 @@
 package com.topolski.backend.service;
 
 import com.topolski.backend.exception.ProductNotFoundException;
-import com.topolski.backend.model.product.dto.ReviewRequest;
+import com.topolski.backend.exception.ReviewNotFoundException;
+import com.topolski.backend.model.product.dto.review.ReviewRequest;
+import com.topolski.backend.model.product.dto.review.ReviewWithProductNameDTO;
 import com.topolski.backend.model.product.entity.Product;
 import com.topolski.backend.model.product.entity.Review;
 import com.topolski.backend.repository.ProductRepository;
 import com.topolski.backend.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -32,5 +36,17 @@ public class ReviewService {
                 .build();
 
         reviewRepository.save(review);
+    }
+
+    public List<ReviewWithProductNameDTO> getAllReviews() {
+        return reviewRepository.fetchAllReviewsWithProductName();
+    }
+
+    @Transactional
+    public void deleteReviewById(Long id) {
+        if (!reviewRepository.existsById(id)) {
+            throw new ReviewNotFoundException();
+        }
+        reviewRepository.deleteById(id);
     }
 }
