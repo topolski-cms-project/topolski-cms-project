@@ -23,6 +23,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -92,7 +93,7 @@ public class Product {
     }
 
     public void updateStockQuantity(Integer quantity) {
-        this.stockQuantity += quantity;
+        this.stockQuantity += Optional.ofNullable(quantity).orElse(0);
     }
 
     @Override

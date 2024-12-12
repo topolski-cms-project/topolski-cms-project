@@ -7,6 +7,7 @@ import com.topolski.backend.model.dto.product.ProductRequest;
 import com.topolski.backend.model.entity.Product;
 import com.topolski.backend.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ProductService {
 
     private final ProductRepository productRepository;
@@ -45,6 +47,8 @@ public class ProductService {
                 .build();
 
         productRepository.save(product);
+
+        log.info("Added new product from request {}", productRequest);
     }
 
     @Transactional
@@ -58,6 +62,8 @@ public class ProductService {
         product.setTechnicalDetails(productRequest.getTechnicalDetails());
 
         Product updatedProduct = productRepository.save(product);
+
+        log.info("Updated product of id {} from {}", id, productRequest);
 
         return updatedProduct.toTechnicalDetailsDTO();
     }

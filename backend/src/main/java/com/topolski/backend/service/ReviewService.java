@@ -9,6 +9,7 @@ import com.topolski.backend.model.entity.Review;
 import com.topolski.backend.repository.ProductRepository;
 import com.topolski.backend.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
@@ -48,5 +50,7 @@ public class ReviewService {
             throw new ReviewNotFoundException();
         }
         reviewRepository.deleteById(id);
+
+        log.info("Deleted review of id {}", id);
     }
 }
