@@ -11,6 +11,6 @@ import java.util.Set;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     @Query("SELECT r FROM Review r " +
-            "JOIN r.product p")
+            "JOIN FETCH r.product")
     Set<Review> fetchAllReviewsWithProductName();
 }
