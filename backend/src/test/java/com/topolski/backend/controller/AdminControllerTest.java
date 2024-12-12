@@ -14,6 +14,7 @@ import static com.topolski.backend.controller.AdminProductMotherObject.invalidPr
 import static com.topolski.backend.controller.AdminProductMotherObject.prepareProduct;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 
 class AdminControllerTest extends BaseController {
 
@@ -34,7 +35,15 @@ class AdminControllerTest extends BaseController {
                 .post(BASE_URL + "/products")
                 .then()
                 .statusCode(HttpStatus.CREATED.value())
-                .body("message", equalTo("Product added successfully"));
+                .body("id", notNullValue())
+                .body("name", equalTo("Wood product"))
+                .body("price", equalTo(19.99f))
+                .body("material", equalTo("Wood"))
+                .body("description", equalTo("Some description"))
+                .body("width", equalTo(1.5f))
+                .body("height", equalTo(5.0f))
+                .body("depth", equalTo(0.5f))
+                .body("stockQuantity", equalTo(1));
     }
 
     @Test

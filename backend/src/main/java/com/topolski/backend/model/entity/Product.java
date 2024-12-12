@@ -113,15 +113,26 @@ public class Product {
     }
 
     private List<String> extractUrls() {
-        return this.imageUrls.stream()
+        return Optional.ofNullable(this.imageUrls)
+                .orElse(Set.of())
+                .stream()
                 .map(ImageUrl::getUrl)
                 .collect(Collectors.toList());
     }
 
     private List<ReviewDTO> getReviewDTO() {
-        return this.reviews
+        return Optional.ofNullable(this.reviews)
+                .orElse(Set.of())
                 .stream()
                 .map(ReviewDTO::from)
                 .collect(Collectors.toList());
+    }
+
+    public void addImageUrl(ImageUrl imageUrl) {
+        this.imageUrls.add(imageUrl);
+    }
+
+    public void removeImageUrl(ImageUrl imageUrl) {
+        this.imageUrls.remove(imageUrl);
     }
 }
