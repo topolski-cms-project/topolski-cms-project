@@ -33,7 +33,7 @@ class AdminControllerTest extends BaseController {
                 .when()
                 .post(BASE_URL + "/products")
                 .then()
-                .statusCode(201)
+                .statusCode(HttpStatus.CREATED.value())
                 .body("message", equalTo("Product added successfully"));
     }
 
@@ -45,7 +45,7 @@ class AdminControllerTest extends BaseController {
                 .when()
                 .post(BASE_URL + "/products")
                 .then()
-                .statusCode(400)
+                .statusCode(HttpStatus.BAD_REQUEST.value())
                 .body("name", equalTo("Product name cannot be blank"));
     }
 
@@ -59,7 +59,7 @@ class AdminControllerTest extends BaseController {
                 .when()
                 .put(BASE_URL + "/products/" + saved.getId())
                 .then()
-                .statusCode(200)
+                .statusCode(HttpStatus.OK.value())
                 .body("name", equalTo("Updated Product A"))
                 .body("price", equalTo(120.0f))
                 .body("material", equalTo("Plastic"))
@@ -90,7 +90,7 @@ class AdminControllerTest extends BaseController {
                 .when()
                 .put(BASE_URL + "/products/1")  // Assuming product with ID 1 exists
                 .then()
-                .statusCode(400)  // Bad Request
+                .statusCode(HttpStatus.BAD_REQUEST.value())
                 .body("price", equalTo("Price must be at least 0"));
     }
 }
