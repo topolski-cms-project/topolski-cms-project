@@ -21,9 +21,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("""
             SELECT DISTINCT p FROM Product p
+            LEFT JOIN FETCH p.imageUrls
             LEFT JOIN FETCH p.technicalDetails
             """)
-    List<Product> findAllWithTechnicalDetails();
+    List<Product> findAllWithImagesAndTechnicalDetails();
 
 
     @Query("""

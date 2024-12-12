@@ -3,9 +3,7 @@ package com.topolski.backend.service;
 import com.topolski.backend.exception.ProductNotFoundException;
 import com.topolski.backend.mapper.GenericToDTOMapper;
 import com.topolski.backend.model.product.dto.product.ProductDTO;
-import com.topolski.backend.model.product.dto.product.ProductDetailsDTO;
 import com.topolski.backend.model.product.dto.product.ProductRequest;
-import com.topolski.backend.model.product.dto.product.ProductTechnicalDetailsDTO;
 import com.topolski.backend.model.product.entity.Product;
 import com.topolski.backend.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +20,8 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final GenericToDTOMapper mapper;
 
-    public List<ProductTechnicalDetailsDTO> getAllProductsWithTechnicalDetails() {
-        List<Product> products = productRepository.findAllWithTechnicalDetails();
+    public List<ProductDTO> getAllProductsWithTechnicalDetails() {
+        List<Product> products = productRepository.findAllWithImagesAndTechnicalDetails();
         return mapper.mapList(products, Product::toTechnicalDetailsDTO);
     }
 
@@ -32,7 +30,7 @@ public class ProductService {
         return mapper.mapList(products, Product::toDTO);
     }
 
-    public ProductDetailsDTO getProductDetails(Long id) {
+    public ProductDTO getProductDetails(Long id) {
         return productRepository.findByIdWithDetails(id)
                 .map(Product::toDetailedDTO)
                 .orElseThrow(ProductNotFoundException::new);
@@ -50,7 +48,7 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductTechnicalDetailsDTO updateProduct(Long id, ProductRequest productRequest) {
+    public ProductDTO updateProduct(Long id, ProductRequest productRequest) {
         Product product = productRepository.findById(id)
                 .orElseThrow(ProductNotFoundException::new);
 

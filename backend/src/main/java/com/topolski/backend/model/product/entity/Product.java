@@ -1,8 +1,6 @@
 package com.topolski.backend.model.product.entity;
 
 import com.topolski.backend.model.product.dto.product.ProductDTO;
-import com.topolski.backend.model.product.dto.product.ProductDetailsDTO;
-import com.topolski.backend.model.product.dto.product.ProductTechnicalDetailsDTO;
 import com.topolski.backend.model.product.dto.product.RatingScore;
 import com.topolski.backend.model.product.dto.review.ReviewDTO;
 import jakarta.persistence.CascadeType;
@@ -59,15 +57,38 @@ public class Product {
     private TechnicalDetails technicalDetails;
 
     public ProductDTO toDTO() {
-        return new ProductDTO(id, name, price, stockQuantity, extractUrls(), RatingScore.from(reviews));
+        return ProductDTO.builder()
+                .id(id)
+                .name(name)
+                .price(price)
+                .stockQuantity(stockQuantity)
+                .imageUrls(extractUrls())
+                .ratingScore(RatingScore.from(reviews))
+                .build();
     }
 
-    public ProductDetailsDTO toDetailedDTO() {
-        return new ProductDetailsDTO(id, name, price, stockQuantity, extractUrls(), technicalDetails, getReviewDTO());
+    public ProductDTO toDetailedDTO() {
+        return ProductDTO.builder()
+                .id(id)
+                .name(name)
+                .price(price)
+                .stockQuantity(stockQuantity)
+                .imageUrls(extractUrls())
+                .reviews(getReviewDTO())
+                .technicalDetails(technicalDetails)
+                .ratingScore(RatingScore.from(reviews))
+                .build();
     }
 
-    public ProductTechnicalDetailsDTO toTechnicalDetailsDTO() {
-        return new ProductTechnicalDetailsDTO(id, name, price, stockQuantity, technicalDetails);
+    public ProductDTO toTechnicalDetailsDTO() {
+        return ProductDTO.builder()
+                .id(id)
+                .name(name)
+                .price(price)
+                .stockQuantity(stockQuantity)
+                .technicalDetails(technicalDetails)
+                .imageUrls(extractUrls())
+                .build();
     }
 
     public void updateStockQuantity(Integer quantity) {

@@ -1,7 +1,7 @@
 package com.topolski.backend.controller;
 
+import com.topolski.backend.model.product.dto.product.ProductDTO;
 import com.topolski.backend.model.product.dto.product.ProductRequest;
-import com.topolski.backend.model.product.dto.product.ProductTechnicalDetailsDTO;
 import com.topolski.backend.model.product.dto.review.ReviewWithProductNameDTO;
 import com.topolski.backend.service.ProductService;
 import com.topolski.backend.service.ReviewService;
@@ -28,7 +28,7 @@ public class AdminController {
     private final ReviewService reviewService;
 
     @GetMapping("/products")
-    public List<ProductTechnicalDetailsDTO> getAllProducts() {
+    public List<ProductDTO> getAllProducts() {
         return productService.getAllProductsWithTechnicalDetails();
     }
 
@@ -39,10 +39,10 @@ public class AdminController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductTechnicalDetailsDTO> updateProduct(
+    public ResponseEntity<ProductDTO> updateProduct(
             @PathVariable Long id,
             @RequestBody @Valid ProductRequest productRequest) {
-        ProductTechnicalDetailsDTO updatedProduct = productService.updateProduct(id, productRequest);
+        ProductDTO updatedProduct = productService.updateProduct(id, productRequest);
         return ResponseEntity.ok(updatedProduct);
     }
 
