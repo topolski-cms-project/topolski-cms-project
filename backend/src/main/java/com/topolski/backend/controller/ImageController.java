@@ -37,6 +37,8 @@ public class ImageController {
     @PostMapping("/review/upload")
     public ResponseEntity<ServerResponse> uploadFile(@PathVariable Long id,
                                                      @RequestParam("file") MultipartFile file) {
+        if(id == null || file == null) return ResponseEntity.badRequest().body(new ServerResponse("Id or multipart file are not correctly configured"));
+
         reviewService.addReviewImageUrl(id, file.getName());
         return ResponseEntity.ok().body(new ServerResponse(s3Service.putObject(file, file.getOriginalFilename())));
     }
