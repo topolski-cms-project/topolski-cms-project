@@ -1,4 +1,4 @@
-package com.topolski.backend.model.product.entity;
+package com.topolski.backend.model.entity;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package com.topolski.backend.repository;
 
-import com.topolski.backend.model.product.entity.Product;
+import com.topolski.backend.model.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,6 +18,14 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             LEFT JOIN FETCH p.reviews
             """)
     List<Product> findAllWithImagesAndReviews();
+
+    @Query("""
+            SELECT DISTINCT p FROM Product p
+            LEFT JOIN FETCH p.imageUrls
+            LEFT JOIN FETCH p.technicalDetails
+            """)
+    List<Product> findAllWithImagesAndTechnicalDetails();
+
 
     @Query("""
             SELECT p FROM Product p

@@ -1,8 +1,8 @@
-package com.topolski.backend.model.product.dto;
+package com.topolski.backend.model.dto.product;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.topolski.backend.model.product.entity.Review;
+import com.topolski.backend.model.entity.Review;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 

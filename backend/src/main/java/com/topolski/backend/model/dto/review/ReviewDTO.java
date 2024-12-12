@@ -1,6 +1,6 @@
-package com.topolski.backend.model.product.dto;
+package com.topolski.backend.model.dto.review;
 
-import com.topolski.backend.model.product.entity.Review;
+import com.topolski.backend.model.entity.Review;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +14,6 @@ public class ReviewDTO {
     private final Integer rating;
 
     public static ReviewDTO from(Review review) {
-        return new ReviewDTO(review.getUsername(), review.getComment(),"Not yet implemented", review.getRating());
+        return new ReviewDTO(review.getUsername(), review.getComment(), "Not yet implemented", review.getRating());
     }
 }
