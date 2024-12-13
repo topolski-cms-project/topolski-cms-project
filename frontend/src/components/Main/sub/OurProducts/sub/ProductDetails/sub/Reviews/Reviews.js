@@ -11,7 +11,7 @@ export default function Reviews({ productID }) {
         isReviewValid: true,
     })
     const [opinion, setOpinion] = useState({
-        productID: productID,
+        productId: productID,
         reviewerName: "",
         email: "",
         reviewText: "",
@@ -28,6 +28,7 @@ export default function Reviews({ productID }) {
                     },
                     body: JSON.stringify(opinion)
                 })
+                
                 if (!response.ok) {
                     throw new Error(`Response status: ${response.status}`);
                 }

@@ -1,0 +1,69 @@
+#cms-login-form{
+    width: 30%;
+    height: 30%;
+    background-color: rgb(201, 201, 201);
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#cms-login-name{
+    justify-self: flex-start;
+    width: 100%;
+    height: 15%;
+    /* border: 2px solid rgb(255, 255, 255); */
+    border-bottom: 1px solid black;
+    border-radius: 15px 15px 0px 0px;
+    box-sizing: border-box;
+    font-size: 1.3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(235, 235, 235, 0.8);
+}
+
+.cms-login-label{
+    width: 40%;
+    text-align: left;
+    color: black;
+    padding-top: 1em;
+}
+
+.cms-login-input{
+    width: 40%;
+    height: 10%;
+    border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    padding-left: .5em;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.cms-login-input:focus{
+    border: 1px solid rgba(0, 0, 0, 0.4);
+
+}
+
+#cms-login-bttn{
+    background-color: rgba(255,255,255,0.8);
+    /* color: white; */
+    font-size: 1.1em;
+    transition: all .3s ease-in-out;
+    width: 60%;
+    height: 12%;
+    display: flex;
+    margin-top: auto;
+    margin-bottom: 5%;
+    border-radius: 15px;
+    border: 2px solid white;
+    justify-content: center;
+    align-items: center;
+}
+
+#cms-login-bttn:hover{
+    cursor: pointer;
+    border: 1px solid black;
+}
