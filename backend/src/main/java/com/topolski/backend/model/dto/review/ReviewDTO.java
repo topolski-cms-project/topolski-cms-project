@@ -14,6 +14,6 @@ public class ReviewDTO {
     private final Integer rating;
 
     public static ReviewDTO from(Review review) {
-        return new ReviewDTO(review.getUsername(), review.getComment(), "Not yet implemented", review.getRating());
+        return new ReviewDTO(review.getUsername(), review.getComment(), review.getImageUrl(), review.getRating());
     }
 }

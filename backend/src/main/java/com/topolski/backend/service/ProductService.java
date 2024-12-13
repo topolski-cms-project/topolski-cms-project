@@ -4,6 +4,7 @@ import com.topolski.backend.exception.ProductNotFoundException;
 import com.topolski.backend.mapper.GenericToDTOMapper;
 import com.topolski.backend.model.dto.product.ProductDTO;
 import com.topolski.backend.model.dto.product.ProductRequest;
+import com.topolski.backend.model.entity.ImageUrl;
 import com.topolski.backend.model.entity.Product;
 import com.topolski.backend.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +39,7 @@ public class ProductService {
                 .orElseThrow(ProductNotFoundException::new);
     }
 
-    public void addProduct(ProductRequest productRequest) {
+    public ProductDTO addProduct(ProductRequest productRequest) {
         Product product = Product.builder()
                 .name(productRequest.name())
                 .price(BigDecimal.valueOf(productRequest.price()))
@@ -49,6 +50,8 @@ public class ProductService {
         productRepository.save(product);
 
         log.info("Added new product from request {}", productRequest);
+
+        return product.toTechnicalDetailsDTO();
     }
 
     @Transactional
@@ -68,4 +71,36 @@ public class ProductService {
         return updatedProduct.toTechnicalDetailsDTO();
     }
 
+    @Transactional
+    public void addProductImageUrl(Long id, String name) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(ProductNotFoundException::new);
+
+
+        product.addImageUrl(
+                ImageUrl.builder()
+                        .product(product)
+                        .url(name)
+                        .build());
+
+        productRepository.save(product);
+
+        log.info("Updated product of id {} - added image url {}", id, name);
+    }
+
+    @Transactional
+    public void removeProductImageUrl(Long id, String name) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(ProductNotFoundException::new);
+
+        product.removeImageUrl(
+                ImageUrl.builder()
+                        .product(product)
+                        .url(name)
+                        .build());
+
+        productRepository.save(product);
+
+        log.info("Updated product of id {} - removed image url {}", id, name);
+    }
 }

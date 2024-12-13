@@ -5,5 +5,6 @@ public record ReviewWithProductNameDTO(
         String username,
         String comment,
         Integer rating,
-        String productName) {
+        String productName,
+        String imageUrl) {
 }
