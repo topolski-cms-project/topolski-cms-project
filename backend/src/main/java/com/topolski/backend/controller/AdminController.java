@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/private/admin")
@@ -48,24 +51,40 @@ public class AdminController {
     public ResponseEntity<?> updateProduct(
             @PathVariable Long id,
             @RequestBody @Valid ProductRequest productRequest) {
-        if(id == null) return ResponseEntity.badRequest().body(new ServerResponse("Id cannot be null"));
+        if (id == null) return ResponseEntity.badRequest().body(new ServerResponse("Id cannot be null"));
 
         ProductDTO updatedProduct = productService.updateProduct(id, productRequest);
         return ResponseEntity.ok(updatedProduct);
     }
 
+    @DeleteMapping("/products/{id}")
+    public ResponseEntity<ServerResponse> removeProduct(@PathVariable Long id) {
+        if (id == null) return ResponseEntity.badRequest().body(new ServerResponse("Id cannot be null"));
+
+        productService.removeProduct(id);
+        return ResponseEntity.status(HttpStatus.OK).body(new ServerResponse("Removed product by Id"));
+    }
+
     @PostMapping("/products/{id}/image")
     public ResponseEntity<ServerResponse> uploadFile(@PathVariable Long id,
-                                                     @RequestParam("file") MultipartFile file) {
-        if(id == null || file == null) return ResponseEntity.badRequest().body(new ServerResponse("Id or imageUrl file are not correctly configured"));
+                                                     @RequestParam("file") MultipartFile file) throws IOException {
+        if (id == null || file == null)
+            return ResponseEntity.badRequest().body(new ServerResponse("Id or imageUrl file are not correctly configured"));
 
-        productService.addProductImageUrl(id, file.getName());
-        return ResponseEntity.ok().body(new ServerResponse(s3Service.putObject(file, file.getOriginalFilename())));
+        MultipartFile renamedMultiPartFile = new MockMultipartFile(
+                file.getName(),
+                UUID.randomUUID() + "-" + file.getOriginalFilename(),
+                file.getContentType(),
+                file.getInputStream()
+        );
+        productService.addProductImageUrl(id, renamedMultiPartFile.getOriginalFilename());
+        return ResponseEntity.ok().body(new ServerResponse(s3Service.putObject(renamedMultiPartFile)));
     }
 
     @DeleteMapping("/products/{id}/image")
     public ResponseEntity<ServerResponse> deleteFile(@PathVariable Long id, @RequestParam("imageUrl") String imageUrl) {
-        if(id == null || Strings.isBlank(imageUrl)) return ResponseEntity.badRequest().body(new ServerResponse("Id or imageUrl file are not correctly configured"));
+        if (id == null || Strings.isBlank(imageUrl))
+            return ResponseEntity.badRequest().body(new ServerResponse("Id or imageUrl file are not correctly configured"));
 
         productService.removeProductImageUrl(id, imageUrl);
         return ResponseEntity.ok().body(new ServerResponse(s3Service.deleteObject(imageUrl)));
@@ -78,7 +97,7 @@ public class AdminController {
 
     @DeleteMapping("/reviews/{id}")
     public ResponseEntity<ServerResponse> deleteReview(@PathVariable Long id) {
-        if(id == null) return ResponseEntity.badRequest().body(new ServerResponse("Id cannot be null"));
+        if (id == null) return ResponseEntity.badRequest().body(new ServerResponse("Id cannot be null"));
 
         reviewService.deleteReviewById(id);
         return ResponseEntity.ok(new ServerResponse("Review deleted successfully"));

@@ -7,6 +7,7 @@ import com.topolski.backend.model.dto.product.ProductRequest;
 import com.topolski.backend.model.entity.ImageUrl;
 import com.topolski.backend.model.entity.Product;
 import com.topolski.backend.repository.ProductRepository;
+import com.topolski.backend.s3.S3Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final GenericToDTOMapper mapper;
+    private final S3Service s3Service;
 
     public List<ProductDTO> getAllProductsWithTechnicalDetails() {
         List<Product> products = productRepository.findAllWithImagesAndTechnicalDetails();
@@ -73,7 +75,7 @@ public class ProductService {
 
     @Transactional
     public void addProductImageUrl(Long id, String name) {
-        Product product = productRepository.findById(id)
+        Product product = productRepository.findByIdWithImageUrls(id)
                 .orElseThrow(ProductNotFoundException::new);
 
 
@@ -90,7 +92,7 @@ public class ProductService {
 
     @Transactional
     public void removeProductImageUrl(Long id, String name) {
-        Product product = productRepository.findById(id)
+        Product product = productRepository.findByIdWithImageUrls(id)
                 .orElseThrow(ProductNotFoundException::new);
 
         product.removeImageUrl(name);
@@ -98,5 +100,19 @@ public class ProductService {
         productRepository.save(product);
 
         log.info("Updated product of id {} - removed image url {}", id, name);
+    }
+
+    @Transactional
+    public void removeProduct(Long id) {
+        Product product = productRepository.findByIdWithDetails(id)
+                .orElseThrow(ProductNotFoundException::new);
+
+        product.getImageUrls().forEach(
+                imageUrl -> s3Service.deleteObject(imageUrl.getUrl())
+        );
+
+        productRepository.delete(product);
+
+        log.info("Removed product of id {}", product.getId());
     }
 }
