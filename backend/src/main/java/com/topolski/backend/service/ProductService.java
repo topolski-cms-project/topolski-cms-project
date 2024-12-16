@@ -93,11 +93,7 @@ public class ProductService {
         Product product = productRepository.findById(id)
                 .orElseThrow(ProductNotFoundException::new);
 
-        product.removeImageUrl(
-                ImageUrl.builder()
-                        .product(product)
-                        .url(name)
-                        .build());
+        product.removeImageUrl(name);
 
         productRepository.save(product);
 

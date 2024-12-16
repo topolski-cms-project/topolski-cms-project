@@ -1,5 +1,6 @@
 package com.topolski.backend.model.dto.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.topolski.backend.model.entity.TechnicalDetails;
 import jakarta.validation.constraints.Min;
@@ -26,6 +27,7 @@ public record ProductRequest(
         Integer quantity
 ) {
 
+    @JsonIgnore
     public TechnicalDetails getTechnicalDetails() {
         return new TechnicalDetails(
                 this.material,
