@@ -4,8 +4,10 @@ import com.topolski.backend.exception.ProductNotFoundException;
 import com.topolski.backend.mapper.GenericToDTOMapper;
 import com.topolski.backend.model.dto.product.ProductDTO;
 import com.topolski.backend.model.dto.product.ProductRequest;
+import com.topolski.backend.model.entity.ImageUrl;
 import com.topolski.backend.model.entity.Product;
 import com.topolski.backend.repository.ProductRepository;
+import com.topolski.backend.s3.S3Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final GenericToDTOMapper mapper;
+    private final S3Service s3Service;
 
     public List<ProductDTO> getAllProductsWithTechnicalDetails() {
         List<Product> products = productRepository.findAllWithImagesAndTechnicalDetails();
@@ -38,7 +41,7 @@ public class ProductService {
                 .orElseThrow(ProductNotFoundException::new);
     }
 
-    public void addProduct(ProductRequest productRequest) {
+    public ProductDTO addProduct(ProductRequest productRequest) {
         Product product = Product.builder()
                 .name(productRequest.name())
                 .price(BigDecimal.valueOf(productRequest.price()))
@@ -49,6 +52,8 @@ public class ProductService {
         productRepository.save(product);
 
         log.info("Added new product from request {}", productRequest);
+
+        return product.toTechnicalDetailsDTO();
     }
 
     @Transactional
@@ -68,4 +73,46 @@ public class ProductService {
         return updatedProduct.toTechnicalDetailsDTO();
     }
 
+    @Transactional
+    public void addProductImageUrl(Long id, String name) {
+        Product product = productRepository.findByIdWithImageUrls(id)
+                .orElseThrow(ProductNotFoundException::new);
+
+
+        product.addImageUrl(
+                ImageUrl.builder()
+                        .product(product)
+                        .url(name)
+                        .build());
+
+        productRepository.save(product);
+
+        log.info("Updated product of id {} - added image url {}", id, name);
+    }
+
+    @Transactional
+    public void removeProductImageUrl(Long id, String name) {
+        Product product = productRepository.findByIdWithImageUrls(id)
+                .orElseThrow(ProductNotFoundException::new);
+
+        product.removeImageUrl(name);
+
+        productRepository.save(product);
+
+        log.info("Updated product of id {} - removed image url {}", id, name);
+    }
+
+    @Transactional
+    public void removeProduct(Long id) {
+        Product product = productRepository.findByIdWithDetails(id)
+                .orElseThrow(ProductNotFoundException::new);
+
+        product.getImageUrls().forEach(
+                imageUrl -> s3Service.deleteObject(imageUrl.getUrl())
+        );
+
+        productRepository.delete(product);
+
+        log.info("Removed product of id {}", product.getId());
+    }
 }

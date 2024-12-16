@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -41,7 +42,10 @@ public class ReviewService {
     }
 
     public List<ReviewWithProductNameDTO> getAllReviews() {
-        return reviewRepository.fetchAllReviewsWithProductName();
+        return reviewRepository.fetchAllReviewsWithProductName()
+                .stream()
+                .map(Review::toDTO)
+                .collect(Collectors.toList());
     }
 
     @Transactional
@@ -52,5 +56,15 @@ public class ReviewService {
         reviewRepository.deleteById(id);
 
         log.info("Deleted review of id {}", id);
+    }
+
+    @Transactional
+    public void addReviewImageUrl(Long id, String name) {
+        Review review = reviewRepository.findById(id)
+                .orElseThrow(ReviewNotFoundException::new);
+
+        review.setImageUrl(name);
+
+        reviewRepository.save(review);
     }
 }

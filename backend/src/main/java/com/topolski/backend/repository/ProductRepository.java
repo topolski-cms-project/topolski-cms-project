@@ -26,7 +26,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             """)
     List<Product> findAllWithImagesAndTechnicalDetails();
 
-
     @Query("""
             SELECT p FROM Product p
              LEFT JOIN FETCH p.imageUrls
@@ -35,5 +34,12 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
               WHERE p.id = :id
               """)
     Optional<Product> findByIdWithDetails(@Param("id") Long id);
+
+    @Query("""
+            SELECT p FROM Product p
+             LEFT JOIN FETCH p.imageUrls
+              WHERE p.id = :id
+              """)
+    Optional<Product> findByIdWithImageUrls(@Param("id") Long id);
 
 }
