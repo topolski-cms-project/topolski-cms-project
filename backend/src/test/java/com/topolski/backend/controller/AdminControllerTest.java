@@ -5,6 +5,7 @@ import com.topolski.backend.model.entity.Product;
 import com.topolski.backend.model.entity.Review;
 import com.topolski.backend.repository.ProductRepository;
 import io.restassured.http.ContentType;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,11 @@ class AdminControllerTest extends BaseController {
     @Autowired
     public AdminControllerTest(ProductRepository productRepository) {
         this.productRepository = productRepository;
+    }
+
+    @AfterEach
+    public void cleanup() {
+        productRepository.deleteAll();
     }
 
     @Test
