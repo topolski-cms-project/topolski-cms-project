@@ -7,8 +7,6 @@
     cursor: pointer;
     position: absolute;
     transition: all .3s ease-in-out;
-    
-
 }
 
 .image-gallery-squares:hover {

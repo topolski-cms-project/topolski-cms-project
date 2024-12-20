@@ -1,0 +1,26 @@
+.images-manager-display{
+    height: 95%;
+    aspect-ratio: 1;
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.delete-image-bttn{
+    position: absolute;
+    top: 1vh;
+    right: 1vw;
+    background-image: url('../../../../../../../../../../../public/trash-icon.png');
+    height: 10%;
+    aspect-ratio: 1;
+    z-index: 2;
+    background-size: cover;
+    background-position: center center;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
+
+.delete-image-bttn:hover{
+    transform: scale(1.1);
+}

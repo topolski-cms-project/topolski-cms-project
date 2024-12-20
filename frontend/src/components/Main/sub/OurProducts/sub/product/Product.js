@@ -1,11 +1,21 @@
 import { useEffect, useState } from 'react';
 import './Product.css';
 import { Rating } from '@mui/material';
+import LoadingWheel from "../../../../../LoadingWheel/LoadingWheel";
 
 export default function Product({ product, setSelectedProduct }) {
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        const img = new Image();
+        img.src = `${process.env.REACT_APP_API_IMAGES}${product.imageUrls[0]}`;
+        img.onload = () => setIsLoaded(true);
+        img.onerror = () => setIsLoaded(false); // Handle error in case the image fails to load
+    }, [product.imageUrls]); // Re-run the effect if product.imageUrls changes
 
     return <div className='product'>
         <div className='product-top'>
+            {!isLoaded && <LoadingWheel showDarkBackground={false}/>}
             <div className='product-image' style={{
                 backgroundImage: `url(${process.env.REACT_APP_API_IMAGES}${product.imageUrls[0]})`
             }}

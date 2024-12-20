@@ -1,0 +1,45 @@
+#message-popup{
+    width: 20vw;
+    height: 12vh;
+    position: fixed;
+    background-color: rgba(0, 128, 0, 0.95);
+    top: 2vh;
+    left: 40vw;
+    border-radius: 10px;
+
+    transition: all .3s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 1vw;
+    z-index: 3000;
+}
+
+#message-popup-icon{
+    height: 70%;
+    aspect-ratio: 1;
+    background-image: url("../../../public/checkmark-icon.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+#message-popup-text{
+    height: 70%;
+    width: 70%;
+    /*background-color: black;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4em;
+    color: white;
+}
+
+.message-popup-invisible{
+    transform:translateY(-30vh);
+}
+
+.message-popup-visible{
+    transform: translateY(0%) !important;
+}

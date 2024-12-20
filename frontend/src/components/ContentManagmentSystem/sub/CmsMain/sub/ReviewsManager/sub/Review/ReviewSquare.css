@@ -1,0 +1,45 @@
+.review-square-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: 10vw;
+    height: auto;
+    /*height: auto;*/
+    /*background: black;*/
+    /*overflow: hidden;*/
+    /*white-space: nowrap;*/
+}
+
+.review-square-image{
+    width: 100%;
+    aspect-ratio: 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.review-square-product{
+    width: 100%;
+    min-height: 15%;
+}
+
+.review-square-name{
+    width: 100%;
+    min-height: 10%;
+}
+
+.review-square-rating{
+    width: 100%;
+    height: 10%;
+}
+
+.review-square-text{
+    width: 100%;
+    min-height: 10%;
+    /*height: auto;*/
+    word-wrap: break-word; /* Ensures text breaks when needed */
+    white-space: pre-wrap; /* Allows the text to wrap and respect line breaks */
+    overflow-wrap: break-word; /* Ensures long words are wrapped */
+}

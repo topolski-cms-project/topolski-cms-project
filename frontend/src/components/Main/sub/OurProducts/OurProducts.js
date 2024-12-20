@@ -24,7 +24,6 @@ export default function OurProducts({selectedProduct,setSelectedProduct,basket, 
 
             const json = await response.json();
             setProducts(json);
-            console.log(json);
         } catch (error) {
             console.error(error.message);
         }

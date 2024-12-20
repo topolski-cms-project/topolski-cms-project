@@ -37,7 +37,8 @@ flex-direction: row;
 #product-details-name-input,
 #product-details-price-input,
 #product-details-stock-input,
-#product-details-dimensions-container{
+#product-details-dimensions-container,
+#product-details-material-input{
     width: 90%;
     height: 10%;
 }
@@ -69,7 +70,7 @@ flex-direction: row;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 3vw;
+    margin-top: 2vw;
     cursor: pointer;
     transition: all .3s ease-in-out;
 }

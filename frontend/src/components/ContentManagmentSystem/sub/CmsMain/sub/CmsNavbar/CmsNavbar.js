@@ -20,12 +20,12 @@ export default function ({setCurrentTab, currentTab}) {
         <div id='cms-stats-bttn' className={currentTab === "reviews" ? 'cms-nav-bttn-active' : 'cms-nav-bttn'}
              onClick={() => setCurrentTab('reviews')}>
             <div id='cms-reviews-icon' className='cms-icon'></div>
-            <span className='cms-bttn-label'>Statystyki</span>
+            <span className='cms-bttn-label'>Opinie</span>
         </div>
         <div id='cms-stats-bttn' className={currentTab === "discounts" ? 'cms-nav-bttn-active' : 'cms-nav-bttn'}
              onClick={() => setCurrentTab('discounts')}>
             <div id='cms-discounts-icon' className='cms-icon'></div>
-            <span className='cms-bttn-label'>Statystyki</span>
+            <span className='cms-bttn-label'>Promocje</span>
         </div>
     </div>
 }

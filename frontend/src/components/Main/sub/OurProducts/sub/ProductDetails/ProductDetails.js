@@ -22,7 +22,6 @@ export default function ProductDetails({ productID,basket,setBasket,setTabChoice
         })
         const response = await data.json();
         setProduct(response);
-        console.log(response);
 
         
 

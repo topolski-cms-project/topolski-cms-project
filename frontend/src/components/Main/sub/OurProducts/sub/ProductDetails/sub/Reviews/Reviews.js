@@ -4,7 +4,6 @@ import Rating from '@mui/material/Rating';
 import { checkIfNotInputEmpty, validateEmail } from '../../../../../../../InputValidator';
 
 export default function Reviews({ productID }) {
-    console.log(productID)
     const [isOpinionValid, setIsOpinionValid] = useState({
         isNameValid: true,
         isEmailValid: true,
@@ -21,13 +20,23 @@ export default function Reviews({ productID }) {
     async function sendReview() {
         if (checkIfNotInputEmpty(opinion.reviewerName) && validateEmail(opinion.email) && checkIfNotInputEmpty(opinion.reviewText)) {
             try {
-                const response = fetch(process.env.REACT_APP_API_REVIEWS, {
+                const response = await fetch(process.env.REACT_APP_API_REVIEWS, {
                     method: 'POST',
                     headers: {
                         "content-type": "application/json"
                     },
                     body: JSON.stringify(opinion)
                 })
+                const data = await response.json()
+                console.log(data);
+                if(response.ok){
+                    const formData = new FormData();
+                    formData.append('file', opinion.image);
+                    const response = await fetch(process.env.REACT_APP_API_REVIEWS, {
+                        method: 'POST',
+                        body: formData
+                    })
+                }
                 
                 if (!response.ok) {
                     throw new Error(`Response status: ${response.status}`);
@@ -44,7 +53,6 @@ export default function Reviews({ productID }) {
             })
         }
 
-        console.log(opinion)
     }
     return <div id='reviews-container'>
         <div id='user-reviews-container'>
