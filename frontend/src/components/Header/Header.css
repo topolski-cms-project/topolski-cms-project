@@ -1,14 +1,19 @@
 header {
     width: 100%;
     height: 10%;
+    min-height: 9%;
+    max-height: 9%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
     text-transform: uppercase;
+    position: relative;
+    z-index: 999;
+
 }
 
+
 .header-bttn>span {
-    /* border: 1px solid black; */
     height: 4em;
     display: flex;
     justify-content: center;
@@ -25,7 +30,6 @@ header {
 }
 
 .header-bttn>span:hover {
-    /* border-bottom: 2px solid black; */
     box-sizing: border-box;
 
 }
@@ -67,7 +71,6 @@ header {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    /* background-color: black; */
 }
 
 #logo {
@@ -75,6 +78,8 @@ header {
     font-size: 2em;
     text-transform: uppercase;
     font-weight: 500;
+    text-align: left;
+    cursor: pointer;
 }
 
 
@@ -83,8 +88,7 @@ header {
 #about-us-bttn,
 #contact-bttn,
 #login-bttn {
-    width: 17%;
-    /* border: 1px solid black; */
+
     height: 100%;
     display: flex;
     justify-content: center;
@@ -92,25 +96,36 @@ header {
     font-size: .8em;
 }
 
+#browse-products-bttn,
+#about-us-bttn,
+#contact-bttn {
+    width: 13%;
+}
+
+#login-bttn {
+    width: 17%;
+}
+
 #basket {
     width: 10%;
     height: 100%;
-    /* background-color: black; */
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
     font-size: .8em;
+    cursor: pointer;
+    gap: 1em;
 }
 
 #basket-image {
-    height: 1.5em;
-    width: 1.5em;
+    height: 1.7em;
+    aspect-ratio: 1;
     background-image: url(../../../public/basket-icon.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    /* border: 1px solid black; */
+    position: relative;
 }
 
 #basket-price-total {
@@ -119,8 +134,22 @@ header {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    /* box-sizing: border-box; */
-    /* border: 1px solid black; */
     line-height: 1;
 
+}
+
+#basket-items-amount {
+    font-size: .8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    height: 1.5em;
+    aspect-ratio: 1;
+    position: absolute;
+    background-color: rgba(255, 0, 0, 0.733);
+    border-radius: 100%;
+    top: -5px;
+    right: -5px;
+    color: white;
 }

@@ -5,11 +5,13 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ReviewRequest {
 
     @NotNull(message = "Product ID cannot be null.")

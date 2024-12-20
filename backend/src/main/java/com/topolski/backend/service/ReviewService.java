@@ -2,6 +2,7 @@ package com.topolski.backend.service;
 
 import com.topolski.backend.exception.ProductNotFoundException;
 import com.topolski.backend.exception.ReviewNotFoundException;
+import com.topolski.backend.model.dto.review.ReviewDTO;
 import com.topolski.backend.model.dto.review.ReviewRequest;
 import com.topolski.backend.model.dto.review.ReviewWithProductNameDTO;
 import com.topolski.backend.model.entity.Product;
@@ -25,7 +26,7 @@ public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final ProductRepository productRepository;
 
-    public void addReview(ReviewRequest reviewRequest) {
+    public ReviewWithProductNameDTO addReview(ReviewRequest reviewRequest) {
 
         Product product = productRepository.findById(reviewRequest.getProductId())
                 .orElseThrow(ProductNotFoundException::new);
@@ -39,6 +40,7 @@ public class ReviewService {
                 .build();
 
         reviewRepository.save(review);
+        return review.toDTO();
     }
 
     public List<ReviewWithProductNameDTO> getAllReviews() {

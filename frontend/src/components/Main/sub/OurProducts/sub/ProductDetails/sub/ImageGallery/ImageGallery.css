@@ -1,0 +1,135 @@
+#image-gallery-container {
+    width: 65%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+}
+
+#image-gallery-left {
+    box-sizing: border-box;
+    height: 100%;
+    width: 25%;
+    min-width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1vh;
+    position: relative;
+    z-index: 100;
+    background-color: white;
+    translate: 0;
+    overflow: hidden;
+}
+
+#image-gallery-left::after{
+    content: '';
+    background-color: white;
+    width: 100%;
+    height: 30%;
+    position: absolute;
+    bottom: -6vw;
+}
+
+
+#image-gallery-nav {
+    width: 100%;
+    height: 11%;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: row;
+    padding: 3%;
+    box-sizing: border-box;
+    justify-content: center;
+    gap: 3%;
+    align-items: center;
+    position: absolute;
+    z-index: 120;
+    bottom: 0;
+}
+
+.image-gallery-nav-bttn {
+    width: 40%;
+    height: 50%;
+    background-color: #f7f7f7;
+    background-position: center center;
+    background-size: 25%;
+    background-repeat: no-repeat;
+    border-radius: 3px;
+    cursor: pointer;
+
+}
+
+#image-gallery-nav-up {
+    background-image: url(/public/arrow-icon.png);
+
+}
+
+#image-gallery-nav-down {
+    background-image: url(/public/arrow-icon.png);
+    transform: rotate(180deg);
+}
+
+.image-gallery-nav-bttn:hover {
+    background-color: #e7e7e7;
+    transition: all .3s ease-in-out;
+}
+
+#image-gallery-right {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    transition: all .3s ease-in-out;
+    overflow: hidden;
+}
+
+#image-carousel-nav-bttns-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 900;
+}
+
+#image-carousel-nav-bttns-container:hover{
+    opacity: 1;
+}
+
+#image-carousel-nav-bttns-container:hover>#image-carousel-bttn-left,
+#image-carousel-nav-bttns-container:hover>#image-carousel-bttn-right{
+    translate: 0;
+    transition: all .3s ease-in-out;
+}
+
+#image-carousel-bttn-left,
+#image-carousel-bttn-right{
+    cursor: pointer;
+    width: 5%;
+    height: 5%;
+    position: absolute;
+    top:45%;
+    
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: 999;
+}
+#image-carousel-bttn-left{
+    background-image: url(../../../../../../../../../public/arrow-icon-left.png);
+    translate:-100px;
+    left: 2%;
+}
+
+#image-carousel-bttn-right{
+    background-image: url(../../../../../../../../../public/arrow-icon-right.png);
+    right: 2%;
+    translate: 100px;
+    
+}
+
+
+

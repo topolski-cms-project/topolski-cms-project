@@ -30,4 +30,8 @@ public class ImageUrl {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
+
+    private Integer getComparableIndex(String value) {
+        return value.indexOf(".jpg") - 1;
+    }
 }

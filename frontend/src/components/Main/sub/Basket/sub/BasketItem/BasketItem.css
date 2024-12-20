@@ -1,0 +1,101 @@
+.basket-item{
+    width: 100%;
+    height: 12vh;
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.basket-item-remove{
+    height: 100%;
+    width: 5%;
+    display: flex;
+    padding-left: 10px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.basket-item-remove-bttn{
+    width: 100%;
+    aspect-ratio: 1;
+    background-image: url(../../../../../../../public/cross-image.png);
+    background-size: 30%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.basket-item-remove-bttn:hover{
+    cursor: pointer;
+}
+
+.basket-item-image-container{
+    height: 100%;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.basket-item-image{
+    height: 100%;
+    aspect-ratio: 1;
+    background-size: 80%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.basket-item-details{
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    align-items: flex-start;
+    font-size: .9em;
+    gap: 5px;
+}
+.basket-item-price{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    box-sizing: border-box;
+    padding-left: 3px;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.6);
+    
+}
+.basket-item-amount{
+    width: 15%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10px;
+    box-sizing: border-box;
+    align-items: center;
+}
+.basket-item-quantity-selector{
+    display:flex;
+    flex-direction: row;
+    height: 40%;
+    width: 70%;
+}
+
+.basket-item-total{
+    height: 100%;
+    width: 15%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 10px;
+    box-sizing: border-box;
+    color: red;
+    font-size: 1.1em;
+    font-weight: 500;
+
+}
+
+
+

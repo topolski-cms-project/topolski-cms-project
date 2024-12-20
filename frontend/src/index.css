@@ -7,12 +7,21 @@
 html,
 body,
 #root,
-.App {
+.App,
+#site {
   margin: 0;
   width: 100%;
   height: 100%;
 
 
+}
+
+#site{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
 }
 
 html,
@@ -21,3 +30,18 @@ body,
   display: flex;
   justify-content: center;
 }
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.empty-order{
+  cursor:not-allowed !important;
+}
+

@@ -1,0 +1,23 @@
+#cms-main-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#cms-main-left{
+    width: 13%;
+    height: 100%;
+}
+
+#cms-main-right{
+    width: 87%;
+    height: 100%;
+    background-color: #F1F1F1;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
