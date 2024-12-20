@@ -132,7 +132,15 @@ public class Product {
         this.imageUrls.add(imageUrl);
     }
 
-    public void removeImageUrl(ImageUrl imageUrl) {
-        this.imageUrls.remove(imageUrl);
+    public void removeImageUrl(String name) {
+        this.imageUrls.stream()
+                .filter(imageUrl -> imageUrl.getUrl().equals(name))
+                .findFirst()
+                .ifPresent(this::removeImageUrl);
+    }
+
+    private void removeImageUrl(ImageUrl imageUrl) {
+        imageUrl.setProduct(null);
+        imageUrls.remove(imageUrl);
     }
 }

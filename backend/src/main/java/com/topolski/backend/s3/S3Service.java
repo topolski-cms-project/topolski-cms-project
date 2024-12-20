@@ -28,7 +28,7 @@ public class S3Service {
     @Value("${aws.s3.bucket.name}")
     private String bucketName;
 
-    public String putObject(MultipartFile file, String key) {
+    public String putObject(MultipartFile file) {
 
         log.info("Started putObject to s3 bucket {} for file {}", bucketName, file.getOriginalFilename());
 
@@ -36,14 +36,14 @@ public class S3Service {
 
             PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                     .bucket(bucketName)
-                    .key(key)
+                    .key(file.getOriginalFilename())
                     .build();
 
             s3Client.putObject(putObjectRequest, fromInputStream(inputStream, file.getSize()));
 
             log.info("Completed putObject to s3 bucket {} for file {}", bucketName, file.getOriginalFilename());
 
-            return "File uploaded successfully to S3 with key: " + key;
+            return "File uploaded successfully to S3 with key: " + file.getOriginalFilename();
         } catch (S3Exception | IOException e) {
             log.info("Error while putObject to s3 bucket {} for file {}, {}", bucketName, file.getOriginalFilename(), e.getStackTrace());
             throw new RuntimeException("Error uploading file to S3: " + e.getMessage(), e);
@@ -87,7 +87,7 @@ public class S3Service {
             return "File deleted successfully from S3: " + key;
         } catch (S3Exception e) {
             log.info("Error deleting file from S3 bucket {} for file {}, {}", bucketName, key, e.getStackTrace());
-            return "Error deleting file from S3: " + e.getMessage();
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

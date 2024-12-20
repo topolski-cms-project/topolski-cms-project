@@ -78,7 +78,7 @@ public class ProductControllerTest extends BaseController {
                 .body("imageUrls[0]", equalTo("http://example.com/img1"))
                 .body("reviews[0].username", equalTo("Szczepan"))
                 .body("reviews[0].comment", equalTo("Excellent product!"))
-                .body("reviews[0].imageUrl", equalTo("Not yet implemented"))
+                .body("reviews[0].imageUrl", equalTo("http://example.com/img1"))
                 .body("reviews[0].rating", equalTo(5))
                 .body("material", equalTo("Wood"))
                 .body("width", equalTo(50.0f))
@@ -107,6 +107,7 @@ public class ProductControllerTest extends BaseController {
                 .rating(5)
                 .comment("Excellent product!")
                 .username("Szczepan")
+                .imageUrl("http://example.com/img1")
                 .createdAt(LocalDateTime.of(2024, 12, 9, 0, 0))
                 .build();
 
