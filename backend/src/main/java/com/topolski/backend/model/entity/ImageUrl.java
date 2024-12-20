@@ -19,7 +19,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Builder
-public class ImageUrl implements Comparable<ImageUrl> {
+public class ImageUrl {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,14 +30,6 @@ public class ImageUrl implements Comparable<ImageUrl> {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
-
-    @Override
-    public int compareTo(ImageUrl o) {
-        if (this.url == null || o.url == null) {
-            throw new IllegalArgumentException();
-        }
-        return getComparableIndex(this.url).compareTo(getComparableIndex(o.url));
-    }
 
     private Integer getComparableIndex(String value) {
         return value.indexOf(".jpg") - 1;

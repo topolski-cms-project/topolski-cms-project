@@ -1,6 +1,7 @@
 package com.topolski.backend.controller;
 
 import com.topolski.backend.model.dto.review.ReviewRequest;
+import com.topolski.backend.model.dto.review.ReviewWithProductNameDTO;
 import com.topolski.backend.model.http.ServerResponse;
 import com.topolski.backend.service.ReviewService;
 import jakarta.validation.Valid;
@@ -23,8 +24,7 @@ public class ReviewController {
     }
 
     @PostMapping
-    public ResponseEntity<ServerResponse> createReview(@Valid @RequestBody ReviewRequest reviewRequest) {
-        reviewService.addReview(reviewRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ServerResponse("Review created successfully."));
+    public ResponseEntity<ReviewWithProductNameDTO> createReview(@Valid @RequestBody ReviewRequest reviewRequest) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(reviewService.addReview(reviewRequest));
     }
 }

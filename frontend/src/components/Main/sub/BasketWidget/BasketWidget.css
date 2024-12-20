@@ -34,7 +34,6 @@
     transition: all .3s ease-in-out;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
 }
 
 .basket-widget-active{
@@ -87,7 +86,6 @@
 #close-icon{
     height: 100%;
     aspect-ratio: 1;
-    /* background-color: black; */
     background-image: url(../../../../../public/cross-image.png);
     background-size: 40%;
     background-position: center center;
@@ -106,14 +104,12 @@
     margin-bottom: 0;
     margin-top: auto;
     height: 15%;
-    /* background-color: black; */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: .5em;
     padding-bottom: 1em;
-    /* box-sizing: border-box; */
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding-top: .5em;
 }

@@ -1,7 +1,6 @@
 .product-bar {
     height: 20%;
     width: 95%;
-    /*background-color: black;*/
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -18,7 +17,6 @@
 .product-bar-image {
     height: 100%;
     width: 15%;
-    /*background-color: black;*/
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;

@@ -28,11 +28,11 @@ export default function Reviews({ productID }) {
                     body: JSON.stringify(opinion)
                 })
                 const data = await response.json()
-                console.log(data);
+
                 if(response.ok){
                     const formData = new FormData();
                     formData.append('file', opinion.image);
-                    const response = await fetch(process.env.REACT_APP_API_REVIEWS, {
+                    const response = await fetch(`${process.env.REACT_APP_API_REVIEWS_IMAGE_ADD}${data.id}`, {
                         method: 'POST',
                         body: formData
                     })
